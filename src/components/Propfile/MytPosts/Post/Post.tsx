@@ -1,8 +1,12 @@
 import React from 'react';
 import s from './Post.module.css';
 
-function Post() {
-    return (<div className={s.item}>post 1</div>);
+type PropsType = {
+    message: string
+}
+
+function Post(props: PropsType) {
+    return (<div className={s.item}>{props.message}</div>);
 }
 
 export default Post;

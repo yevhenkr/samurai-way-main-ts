@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 function MyPosts() {
@@ -13,9 +12,9 @@ function MyPosts() {
                     </div>
                 </div>
             </div>
-            <Post/>
-            <Post/>
-            <Post/>
+            <Post message={'bla bla'}/>
+            <Post message={'bla bla bla bla'}/>
+            <Post message={'blablablabla'}/>
         </>
     );
 }

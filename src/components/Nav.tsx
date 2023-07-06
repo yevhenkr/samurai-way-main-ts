@@ -1,15 +1,16 @@
 import React from 'react';
-import '../App.css';
+import s from './Nav.module.css';
 
 function Nav() {
     return (
-        <nav>
-            <div><a>Profile</a></div>
-            <div><a>Message</a></div>
-            <div><a>News</a></div>
-            <div><a>Music</a></div>
-            <div><a>Settings</a></div>
+        <nav className={s.nav}>
+            <div className={s.item}><a>Profile</a></div>
+            <div className={`${s.item} ${s.active}`}><a>Message</a></div>
+            <div className={s.item}><a>News</a></div>
+            <div className={s.item}><a>Music</a></div>
+            <div className={s.item}><a>Settings</a></div>
         </nav>
     );
 }
+
 export default Nav;

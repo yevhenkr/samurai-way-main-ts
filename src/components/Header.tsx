@@ -1,9 +1,13 @@
 import React from 'react';
-import '../App.css';
+import s from './Header.module.css';
 
 function Header() {
     return (
-            <header><img src={'https://1000logos.net/wp-content/uploads/2016/10/Batman-Logo-1966.png'}/></header>
+        <header className={s.header}>
+            <img
+                src={'https://1000logos.net/wp-content/uploads/2016/10/Batman-Logo-1966.png'} alt={'logo'}/>
+        </header>
     );
 }
+
 export default Header;

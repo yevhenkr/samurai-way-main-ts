@@ -1,9 +1,9 @@
 import React from 'react';
-import '../App.css';
+import s from './Profile.module.css';
 
 function Profile() {
     return (
-        <div className="app-content">
+        <div className={s.profile}>
             <div>
                 <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>
             </div>
@@ -21,4 +21,5 @@ function Profile() {
         </div>
     );
 }
+
 export default Profile;

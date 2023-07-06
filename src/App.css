@@ -5,20 +5,4 @@
     grid-template-columns: 2fr 10fr;
 }
 
-header {
-    grid-area: h;
-    background-color: green;
-}
-header img{
-    max-height: 50px;
-}
 
-nav {
-    grid-area: n;
-    background-color: aqua;
-}
-
-.app-content {
-    grid-area: c;
-    background-color: blue;
-}

@@ -4,7 +4,7 @@ import MyPosts from './MytPosts/MyPosts';
 
 function Profile() {
     return (
-        <div className={s.profile}>
+        <div>
             <div>
                 <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>
             </div>

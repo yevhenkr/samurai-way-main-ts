@@ -10,7 +10,7 @@ function Navbar() {
                 </NavLink>
             </div>
             <div className={`${s.item} ${s.active}`}>
-                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/message'}>Messages
+                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/dialogs'}>Messages
                 </NavLink>
             </div>
             <div className={s.item}>

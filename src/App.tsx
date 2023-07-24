@@ -14,8 +14,8 @@ function App() {
             <div className="app-wrapper-content">
                 <Routes>
                     <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/message" element={<Dialogs/>}/>
-                    {/*<Route path={'/page/:id'} element={*/}
+                    <Route path="/dialogs" element={<Dialogs/>}/>
+                    <Route path={'/dialogs/:id'} element={<Dialogs/>}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </Routes>

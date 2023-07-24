@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import Profile from './components/Propfile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
+import {Route, Routes} from 'react-router-dom';
 
 function App() {
     return (
@@ -11,8 +12,13 @@ function App() {
             <Header/>
             <Nav/>
             <div className="app-wrapper-content">
-                {/*<Profile/>*/}
-                <Dialogs/>
+                <Routes>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/message" element={<Dialogs/>}/>
+                    {/*<Route path={'/page/:id'} element={*/}
+                    {/*    <Page pages={dataState.pages}/>}/>*/}
+                    {/*<Route path={'/*'} element={<Error404/>}/>*/}
+                </Routes>
             </div>
         </div>
     );

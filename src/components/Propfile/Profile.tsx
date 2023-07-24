@@ -1,17 +1,12 @@
 import React from 'react';
 import s from './Profile.module.css';
 import MyPosts from './MytPosts/MyPosts';
+import Profileinfo from './MytPosts/Profileinfo/Profileinfo';
 
 function Profile() {
     return (
         <div>
-            <div>
-                <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>
-            </div>
-            <div>
-                {/*<img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>*/}
-                ava + dicript
-            </div>
+            <Profileinfo/>
             <MyPosts/>
         </div>
     );

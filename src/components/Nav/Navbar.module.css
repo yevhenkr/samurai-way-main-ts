@@ -3,10 +3,10 @@
     grid-area: n;
 }
 
-.item{
+.item a{
     color: chocolate;
 }
 
-.item.active{
+.item a.active{
     font-weight: bold;
 }

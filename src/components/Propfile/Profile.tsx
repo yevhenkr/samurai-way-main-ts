@@ -1,13 +1,17 @@
 import React from 'react';
-import s from './Profile.module.css';
 import MyPosts from './MytPosts/MyPosts';
 import Profileinfo from './MytPosts/Profileinfo/Profileinfo';
 
 function Profile() {
+    const posts = [
+        {message: 'bla bla', id: '1'},
+        {message: 'Ivan', id: '2'},
+        {message: 'Sergei', id: '3'},
+    ]
     return (
         <div>
             <Profileinfo/>
-            <MyPosts/>
+            <MyPosts posts={posts}/>
         </div>
     );
 }

@@ -1,16 +1,10 @@
 import React from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css'
+import PostsItems from './PostsItems/PostsItems';
 
-function MyPosts() {
-    const posts = [
-        {message: 'bla bla', id: '1'},
-        {message: 'Ivan', id: '2'},
-        {message: 'Sergei', id: '3'},
-    ]
-    let postslements =posts.map(post =>
-        <Post message={post.message}/>
-    )
+function MyPosts(props: any) {
+
     return (
         <>
             <div className={s.postsBlock}>My posts
@@ -22,7 +16,7 @@ function MyPosts() {
                     </div>
                 </div>
             </div>
-            {postslements}
+            <PostsItems posts={props.posts}/>
         </>
     );
 }

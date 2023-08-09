@@ -6,16 +6,17 @@ import Profile from './components/Propfile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
 
-function App() {
+function App(props: any) {
     return (
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/dialogs" element={<Dialogs/>}/>
-                    <Route path={'/dialogs/:id'} element={<Dialogs/>}/>
+                    <Route path="/profile" element={<Profile posts={props.posts}/>}/>
+                    <Route path="/dialogs" element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>}/>
+                    <Route path={'/dialogs/:id'}
+                           element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </Routes>

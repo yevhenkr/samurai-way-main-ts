@@ -1,17 +1,12 @@
 import React from 'react';
 import MyPosts from './MytPosts/MyPosts';
-import Profileinfo from './MytPosts/Profileinfo/Profileinfo';
+import Profileinfo from './MytPosts/ProfileInfo/ProfileInfo';
 
-function Profile() {
-    const posts = [
-        {message: 'bla bla', id: '1'},
-        {message: 'Ivan', id: '2'},
-        {message: 'Sergei', id: '3'},
-    ]
+function Profile(props: any) {
     return (
         <div>
             <Profileinfo/>
-            <MyPosts posts={posts}/>
+            <MyPosts posts={props.posts}/>
         </div>
     );
 }

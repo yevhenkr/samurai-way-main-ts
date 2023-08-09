@@ -1,19 +1,11 @@
 import React from 'react';
 import Post from './../Post/Post';
+import {PotsType} from '../../../../index';
 
-type PostType = {
-    message: string,
-    id: number
-}
+function PostsItems(props: any) {
+    let postslements = props.posts.map((post: PotsType) => <Post key={post.id} props={post}/>)
 
-type PropsType = {
-    posts: PostType[]
-}
-
-function PostsItems(props: PropsType) {
-    let postslements = props.posts.map(post => <Post message={post.message}/>)
-
-    return <> {postslements}</>
+    return <>  {postslements}</>
 }
 
 export default PostsItems;

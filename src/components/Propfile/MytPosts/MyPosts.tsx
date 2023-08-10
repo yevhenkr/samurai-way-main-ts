@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {DetailedHTMLProps, LegacyRef, MouseEventHandler, TextareaHTMLAttributes} from 'react';
 import s from './MyPosts.module.css'
 import PostsItems from './PostsItems/PostsItems';
 
 function MyPosts(props: any) {
+    let newPost = React.createRef<HTMLTextAreaElement>()
+
+    function addPost() {
+        alert(newPost.current?.value)
+    }
 
     return (
         <>
             <div className={s.postsBlock}>My posts
                 <h3 className={s.posts}>My posts</h3>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPost}></textarea>
                     <div>
-                        <button>Add Post</button>
+                        <button onClick={addPost}>Add Post</button>
                     </div>
                 </div>
             </div>

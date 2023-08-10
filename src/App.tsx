@@ -5,6 +5,7 @@ import Navbar from './components/Nav/Navbar';
 import Profile from './components/Propfile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
+import {addPost} from './redux/state';
 
 function App(props: any) {
     return (
@@ -13,7 +14,8 @@ function App(props: any) {
             <Navbar sideBarFriends={props.sideBarFriends}/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/profile" element={<Profile posts={props.profilePage.posts}/>}/>
+                    <Route path="/profile"
+                           element={<Profile addPost={props.addPost} posts={props.profilePage.posts}/>}/>
                     <Route path="/dialogs" element={<Dialogs messages={props.messagesPage.messages}
                                                              dialogs={props.messagesPage.dialogs}/>}/>
                     <Route path={'/dialogs/:id'}

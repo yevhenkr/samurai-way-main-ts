@@ -23,7 +23,6 @@ export const state = {
             {message: 'Ivan', id: v1()},
             {message: 'Sergei', id: v1()},
         ] as PotsType[],
-
     },
     messagesPage: {
         dialogs: [
@@ -47,4 +46,7 @@ export const state = {
             {name: 'Sveta', id: v1()},
         ] as FriendType[]
     }
+}
+export let addPost =(post:string)=>{
+    state.profilePage.posts.push(<PotsType>{message: post, id:v1()})
 }

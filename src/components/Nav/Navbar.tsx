@@ -1,8 +1,9 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
+import Friends from '../Friend/Friends';
 
-function Navbar() {
+function Navbar(props: any) {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
@@ -20,6 +21,9 @@ function Navbar() {
             <div className={s.item}>
                 <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/Music'}>Music
                 </NavLink>
+            </div>
+            <div style={{color: 'chocolate', textDecoration: 'underline'}}>Friends
+                <Friends friends={props.sideBarFriends}/>
             </div>
         </nav>
     );

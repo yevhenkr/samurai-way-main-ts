@@ -10,13 +10,15 @@ function App(props: any) {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar/>
+            <Navbar sideBarFriends={props.sideBarFriends}/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/profile" element={<Profile posts={props.posts}/>}/>
-                    <Route path="/dialogs" element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>}/>
+                    <Route path="/profile" element={<Profile posts={props.profilePage.posts}/>}/>
+                    <Route path="/dialogs" element={<Dialogs messages={props.messagesPage.messages}
+                                                             dialogs={props.messagesPage.dialogs}/>}/>
                     <Route path={'/dialogs/:id'}
-                           element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>}/>
+                           element={<Dialogs messages={props.messagesPage.messages}
+                                             dialogs={props.messagesPage.dialogs}/>}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </Routes>

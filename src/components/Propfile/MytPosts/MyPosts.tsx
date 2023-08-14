@@ -6,7 +6,13 @@ function MyPosts(props: any) {
     let newPost = React.createRef<HTMLTextAreaElement>()
 
     function addPost() {
-        props.addPost(newPost.current?.value)
+        if (newPost.current) {
+            const postValue = newPost.current.value.trim(); // Удаляем лишние пробелы в начале и конце
+            if (postValue) {
+                props.addPost(postValue);
+                newPost.current.value = '';
+            }
+        }
     }
 
     return (

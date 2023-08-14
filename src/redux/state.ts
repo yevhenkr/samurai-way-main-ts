@@ -1,4 +1,5 @@
 import {v1} from 'uuid';
+import {rerenderEntireTree} from '../render';
 
 export type PotsType = {
     message: string,
@@ -16,6 +17,7 @@ export type FriendType = {
     name: string,
     id: string
 }
+
 export const state = {
     profilePage: {
         posts: [
@@ -47,6 +49,7 @@ export const state = {
         ] as FriendType[]
     }
 }
-export let addPost =(post:string)=>{
-    state.profilePage.posts.push(<PotsType>{message: post, id:v1()})
+export let addPost = (post: string) => {
+    state.profilePage.posts.push(<PotsType>{message: post, id: v1()})
+    rerenderEntireTree(state, addPost)
 }

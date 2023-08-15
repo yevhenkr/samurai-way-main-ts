@@ -5,6 +5,11 @@ export type PotsType = {
     message: string,
     id: string
 }
+export type ProfilePageType = {
+    posts: PotsType[]
+    newPost: string
+}
+
 export type DialogsType = {
     name: string,
     id: string
@@ -13,18 +18,34 @@ export type MessageType = {
     text: string,
     id: string
 }
+export type DialogPageType = {
+    dialogs: DialogsType[]
+    messages: MessageType[]
+}
+
 export type FriendType = {
     name: string,
     id: string
 }
 
-export const state = {
+export type SideBarType = {
+    friends: FriendType[]
+}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    messagesPage: DialogPageType
+    sideBar: SideBarType
+}
+
+export const state: RootStateType = {
     profilePage: {
         posts: [
             {message: 'bla bla', id: v1()},
             {message: 'Ivan', id: v1()},
             {message: 'Sergei', id: v1()},
         ] as PotsType[],
+        newPost: 'it-camasutra'
     },
     messagesPage: {
         dialogs: [
@@ -47,9 +68,15 @@ export const state = {
             {name: 'Sasha', id: v1()},
             {name: 'Sveta', id: v1()},
         ] as FriendType[]
-    }
+    } as SideBarType
 }
+
 export let addPost = (post: string) => {
     state.profilePage.posts.push(<PotsType>{message: post, id: v1()})
-    rerenderEntireTree(state, addPost)
+    rerenderEntireTree(state, addPost, updateNewPostText)
+    updateNewPostText('')
+}
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPost = newText
+    rerenderEntireTree(state, addPost, updateNewPostText)
 }

@@ -1,8 +1,15 @@
-import React, {DetailedHTMLProps, LegacyRef, MouseEventHandler, TextareaHTMLAttributes, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import PostsItems from './PostsItems/PostsItems';
+import {ProfilePageType} from '../../../redux/state';
 
-function MyPosts(props: any) {
+type MyPostPropsType = {
+    addPost: (post: string) => void
+    updateNewPostText: (post: string) => void
+    profilePage: ProfilePageType
+}
+
+function MyPosts(props: MyPostPropsType) {
     let newPost = React.createRef<HTMLTextAreaElement>()
 
     function addPost() {
@@ -10,9 +17,12 @@ function MyPosts(props: any) {
             const postValue = newPost.current.value.trim(); // Удаляем лишние пробелы в начале и конце
             if (postValue) {
                 props.addPost(postValue);
-                newPost.current.value = '';
             }
         }
+    }
+
+    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -20,13 +30,13 @@ function MyPosts(props: any) {
             <div className={s.postsBlock}>My posts
                 <h3 className={s.posts}>My posts</h3>
                 <div>
-                    <textarea ref={newPost}></textarea>
+                    <textarea onChange={onChangeTextarea} ref={newPost} value={props.profilePage.newPost}></textarea>
                     <div>
                         <button onClick={addPost}>Add Post</button>
                     </div>
                 </div>
             </div>
-            <PostsItems posts={props.posts}/>
+            <PostsItems posts={props.profilePage.posts}/>
         </>
     );
 }

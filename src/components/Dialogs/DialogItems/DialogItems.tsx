@@ -3,7 +3,10 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {DialogsType} from '../../../redux/state';
 
-export const DialogItems = (props: any) => {
+type DialogItemsPropsType = {
+    dialogs: DialogsType[]
+}
+export const DialogItems = (props: DialogItemsPropsType) => {
     const path = '/dialogs/'
 
     let dialogsElements = props.dialogs.map((dialog: DialogsType) =>

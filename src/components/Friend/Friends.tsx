@@ -3,7 +3,11 @@ import {FriendType} from '../../redux/state';
 import React from 'react';
 import s from './Friends.module.css'
 
-function Friends(props: any) {
+type FriendsPropsType = {
+    friends: FriendType[]
+}
+
+function Friends(props: FriendsPropsType) {
     const friends = props.friends.map((friend: FriendType) => <div key={friend.id}>
         <div className={s.friendsItem}>
             <img className={s.avatar}

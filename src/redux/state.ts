@@ -1,5 +1,4 @@
 import {v1} from 'uuid';
-import {rerenderEntireTree} from '../render';
 
 export type PotsType = {
     message: string,
@@ -70,13 +69,20 @@ export const state: RootStateType = {
         ] as FriendType[]
     } as SideBarType
 }
+let rerenderEntireTree = (state: RootStateType, addPost: (post: string) => void, updateNewPostText: (newText: string) => void) => {
+    console.log('state changed');
+}
 
-export let addPost = (post: string) => {
+export const addPost = (post: string) => {
     state.profilePage.posts.push(<PotsType>{message: post, id: v1()})
     rerenderEntireTree(state, addPost, updateNewPostText)
     updateNewPostText('')
 }
-export let updateNewPostText = (newText: string) => {
+export const updateNewPostText = (newText: string) => {
     state.profilePage.newPost = newText
     rerenderEntireTree(state, addPost, updateNewPostText)
+}
+
+export const subscribe = (observer: any) => {
+    rerenderEntireTree = observer
 }

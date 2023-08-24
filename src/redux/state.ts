@@ -37,7 +37,27 @@ export type RootStateType = {
     sideBar: SideBarType
 }
 
-export let store = {
+export type AddPostActionType = {
+    type: "ADD-POST"
+    post: string
+}
+type ChangeNewPostActionType = {
+    type: "CHANGE_NEW_POST"
+    newText: string
+}
+
+export type ActionType = AddPostActionType | ChangeNewPostActionType;
+
+export type StoreType = {
+    _state: RootStateType
+    getState: () => RootStateType
+    addPost: (post: string) => void
+    _callSubscriber: () => void
+    updateNewPostText: (newText: string) => void
+    subscribe: (callback: () => void) => void
+    dispatch: (action: ActionType) => void
+}
+export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -70,17 +90,12 @@ export let store = {
             ] as FriendType[]
         } as SideBarType
     },
-    getState() {
-        return this._state
-    },
     addPost(post: string) {
-        debugger
         this._state.profilePage.posts.push(<PotsType>{message: post, id: v1()})
         this._callSubscriber()
         this.updateNewPostText('')
     },
     updateNewPostText(newText: string) {
-        debugger
         this._state.profilePage.newPost = newText
         this._callSubscriber()
     },
@@ -88,7 +103,22 @@ export let store = {
         console.log('state changed');
     },
 
-    subscribe(callback: () => void) {
+    subscribe(callback) {
         this._callSubscriber = callback
+    },
+    getState() {
+        return this._state
+    },
+    dispatch(action: ActionType) {
+        if (action.type === "ADD-POST") {
+            this._state.profilePage.posts.push(<PotsType>{message: action.post, id: v1()})
+            this._callSubscriber()
+            this.updateNewPostText('')
+        } else if (action.type === "CHANGE_NEW_POST") {
+            this._state.profilePage.newPost = action.newText
+            this._callSubscriber()
+        } else {
+            console.log("Uncorect actionType ERROR")
+        }
     }
 }

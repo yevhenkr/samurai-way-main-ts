@@ -1,12 +1,12 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import PostsItems from './PostsItems/PostsItems';
-import {ProfilePageType} from '../../../redux/state';
+import {AddPostActionType, ProfilePageType} from '../../../redux/state';
 
 type MyPostPropsType = {
-    addPost: (post: string) => void
     updateNewPostText: (post: string) => void
     profilePage: ProfilePageType
+    dispatch: (action: AddPostActionType) => void
 }
 
 function MyPosts(props: MyPostPropsType) {
@@ -16,7 +16,7 @@ function MyPosts(props: MyPostPropsType) {
         if (newPost.current) {
             const postValue = newPost.current.value.trim(); // Удаляем лишние пробелы в начале и конце
             if (postValue) {
-                props.addPost(postValue);
+                props.dispatch({type: "ADD-POST", post: postValue})
             }
         }
     }

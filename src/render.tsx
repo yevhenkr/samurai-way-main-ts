@@ -8,10 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 export let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}
-                 sideBarFriends={store.getState().sideBar}
-                 profilePage={store.getState().profilePage}
-                 dialogPageType={store.getState().messagesPage}/></BrowserRouter>,
+            <App store={store}/></BrowserRouter>,
         document.getElementById('root')
     );
 }

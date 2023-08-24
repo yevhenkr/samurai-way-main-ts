@@ -5,33 +5,32 @@ import Navbar from './components/Nav/Navbar';
 import Profile from './components/Propfile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
-import {DialogPageType, ProfilePageType, SideBarType} from './redux/state';
+import {DialogPageType, ProfilePageType, SideBarType, StoreType} from './redux/state';
+import {stat} from "fs";
 
 
 type AppPropsType = {
-    addPost: (post: string) => void
-    updateNewPostText: (newText: string) => void
-    profilePage: ProfilePageType
-    dialogPageType: DialogPageType
-    sideBarFriends: SideBarType
+    store: StoreType
 }
 
-function App(props: AppPropsType) {
+const App: React.FC<AppPropsType> = (props) => {
+    const state = props.store.getState();
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar sideBar={props.sideBarFriends}/>
+            <Navbar sideBar={state.sideBar}/>
             <div className="app-wrapper-content">
                 <Routes>
                     <Route path="/profile"
                            element={
-                               <Profile addPost={props.addPost} updateNewPostText={props.updateNewPostText}
-                                        profilePage={props.profilePage}/>}/>
-                    <Route path="/dialogs" element={<Dialogs messages={props.dialogPageType.messages}
-                                                             dialogs={props.dialogPageType.dialogs}/>}/>
+                               <Profile updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                                        profilePage={state.profilePage}
+                                        dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                    <Route path="/dialogs" element={<Dialogs messages={state.messagesPage.messages}
+                                                             dialogs={state.messagesPage.dialogs}/>}/>
                     <Route path={'/dialogs/:id'}
-                           element={<Dialogs messages={props.dialogPageType.messages}
-                                             dialogs={props.dialogPageType.dialogs}/>}/>
+                           element={<Dialogs messages={state.messagesPage.messages}
+                                             dialogs={state.messagesPage.dialogs}/>}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </Routes>

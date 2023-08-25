@@ -37,16 +37,6 @@ export type RootStateType = {
     sideBar: SideBarType
 }
 
-export type AddPostActionType = {
-    type: "ADD-POST"
-    post: string
-}
-type ChangeNewPostActionType = {
-    type: "CHANGE_NEW_POST"
-    newText: string
-}
-
-export type ActionType = AddPostActionType | ChangeNewPostActionType;
 
 export type StoreType = {
     _state: RootStateType
@@ -56,6 +46,14 @@ export type StoreType = {
     updateNewPostText: (newText: string) => void
     subscribe: (callback: () => void) => void
     dispatch: (action: ActionType) => void
+}
+export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewPostAC>;
+export const addPostAC = (postText: string) => {
+    return {type: "ADD-POST", postText: postText} as const
+}
+
+export const changeNewPostAC = (newText: string) => {
+    return {type: "CHANGE_NEW_POST", newText: newText} as const
 }
 export let store: StoreType = {
     _state: {
@@ -111,7 +109,7 @@ export let store: StoreType = {
     },
     dispatch(action: ActionType) {
         if (action.type === "ADD-POST") {
-            this._state.profilePage.posts.push(<PotsType>{message: action.post, id: v1()})
+            this._state.profilePage.posts.push(<PotsType>{message: action.postText, id: v1()})
             this._callSubscriber()
             this.updateNewPostText('')
         } else if (action.type === "CHANGE_NEW_POST") {

@@ -25,11 +25,13 @@ const App: React.FC<AppPropsType> = (props) => {
                            element={
                                <Profile profilePage={state.profilePage}
                                         dispatch={props.store.dispatch.bind(props.store)}/>}/>
-                    <Route path="/dialogs" element={<Dialogs messages={state.messagesPage.messages}
-                                                             dialogs={state.messagesPage.dialogs}/>}/>
+                    <Route path="/dialogs" element={<Dialogs dialogPageType={state.messagesPage}
+                                                             dispatch={props.store.dispatch.bind(props.store)}
+                    />}/>
                     <Route path={'/dialogs/:id'}
-                           element={<Dialogs messages={state.messagesPage.messages}
-                                             dialogs={state.messagesPage.dialogs}/>}/>
+                           element={<Dialogs dialogPageType={state.messagesPage}
+                                             dispatch={props.store.dispatch.bind(props.store)}
+                           />}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </Routes>

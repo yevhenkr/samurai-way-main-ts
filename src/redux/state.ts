@@ -20,6 +20,7 @@ export type MessageType = {
 export type DialogPageType = {
     dialogs: DialogsType[]
     messages: MessageType[]
+    newMessage: string
 }
 
 export type FriendType = {
@@ -44,17 +45,30 @@ export type StoreType = {
     addPost: (post: string) => void
     _callSubscriber: () => void
     updateNewPostText: (newText: string) => void
+    updateNewMessage: () => void
     subscribe: (callback: () => void) => void
     dispatch: (action: ActionType) => void
 }
-export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewPostAC>;
+export type ActionType =
+    ReturnType<typeof changeNewPostAC>
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof changeNewMessageAC>
+    | ReturnType<typeof addMessageAC>;
+
+export const changeNewPostAC = (newText: string) => {
+    return {type: "CHANGE-NEW-POST", newText: newText} as const
+}
 export const addPostAC = (postText: string) => {
     return {type: "ADD-POST", postText: postText} as const
 }
 
-export const changeNewPostAC = (newText: string) => {
-    return {type: "CHANGE_NEW_POST", newText: newText} as const
+export const changeNewMessageAC = (newMessage: string) => {
+    return {type: "CHANGE-NEW-MESSAGE", newMessage} as const
 }
+export const addMessageAC = (newMessage: string) => {
+    return {type: "ADD-MESSAGE", newMessage} as const
+}
+
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -77,7 +91,8 @@ export let store: StoreType = {
                 {text: '- Hi', id: v1()},
                 {text: '- How are you itika', id: v1()},
                 {text: '- You', id: v1()}
-            ] as MessageType[]
+            ] as MessageType[],
+            newMessage: ""
         },
 
         sideBar: {
@@ -97,6 +112,10 @@ export let store: StoreType = {
         this._state.profilePage.newPost = newText
         this._callSubscriber()
     },
+    updateNewMessage() {
+        this._state.messagesPage.newMessage = ""
+        this._callSubscriber()
+    },
     _callSubscriber() {
         console.log('state changed');
     },
@@ -112,9 +131,16 @@ export let store: StoreType = {
             this._state.profilePage.posts.push(<PotsType>{message: action.postText, id: v1()})
             this._callSubscriber()
             this.updateNewPostText('')
-        } else if (action.type === "CHANGE_NEW_POST") {
+        } else if (action.type === "CHANGE-NEW-POST") {
             this._state.profilePage.newPost = action.newText
             this._callSubscriber()
+        } else if (action.type === "CHANGE-NEW-MESSAGE") {
+            this._state.messagesPage.newMessage = action.newMessage
+            this._callSubscriber()
+        } else if (action.type === "ADD-MESSAGE") {
+            this._state.messagesPage.messages.push(<MessageType>{text: action.newMessage, id: v1()})
+            this._callSubscriber()
+            this.updateNewMessage()
         } else {
             console.log("Uncorect actionType ERROR")
         }

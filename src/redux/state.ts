@@ -44,10 +44,7 @@ export type RootStateType = {
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
-    addPost: (post: string) => void
     _callSubscriber: () => void
-    updateNewPostText: (newText: string) => void
-    updateNewMessage: () => void
     subscribe: (callback: () => void) => void
     dispatch: (action: ActionType) => void
 }
@@ -90,19 +87,6 @@ export let store: StoreType = {
                 {name: 'Sveta', id: v1()},
             ] as FriendType[]
         } as SideBarType
-    },
-    addPost(post: string) {
-        this._state.profilePage.posts.push(<PotsType>{message: post, id: v1()})
-        this._callSubscriber()
-        this.updateNewPostText('')
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPost = newText
-        this._callSubscriber()
-    },
-    updateNewMessage() {
-        this._state.messagesPage.newMessage = ""
-        this._callSubscriber()
     },
     _callSubscriber() {
         console.log('state changed');

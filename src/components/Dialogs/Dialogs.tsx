@@ -3,13 +3,12 @@ import {DialogItems} from './DialogItems/DialogItems';
 import {Messages} from './Messages/Messages';
 import {
     ActionType,
-    addMessageAC,
-    changeNewMessageAC,
     DialogPageType,
 } from '../../redux/state';
 import s from './Dialogs.module.css'
 import TextFild from "../TextFieldArea/TextFieldArea";
 import SimpleButton from "../SimpleButton/SimpleButton";
+import {addMessageAC, changeNewMessageAC} from "../../redux/messages-page-reducer";
 
 type DialogPropsType = {
     dialogPageType: DialogPageType

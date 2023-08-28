@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import PostsItems from './PostsItems/PostsItems';
-import {ActionType, addPostAC, changeNewPostAC, ProfilePageType} from '../../../redux/state';
+import {ActionType, ProfilePageType} from '../../../redux/state';
+import {addPostAC, changeNewPostAC} from "../../../redux/profile-page-reducer";
 
 type MyPostPropsType = {
     profilePage: ProfilePageType
@@ -10,7 +11,6 @@ type MyPostPropsType = {
 
 function MyPosts(props: MyPostPropsType) {
     let newPost = React.createRef<HTMLTextAreaElement>()
-
     function addPost() {
         if (newPost.current) {
             const postValue = newPost.current.value.trim(); // Удаляем лишние пробелы в начале и конце
@@ -23,7 +23,6 @@ function MyPosts(props: MyPostPropsType) {
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.dispatch(changeNewPostAC(e.currentTarget.value))
     }
-
     return (
         <>
             <div className={s.postsBlock}>My posts

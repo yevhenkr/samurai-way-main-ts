@@ -1,4 +1,7 @@
 import {v1} from 'uuid';
+import {addMessageAC, changeNewMessageAC, messagePageReducer} from "./messages-page-reducer";
+import {addPostAC, changeNewPostAC, profilePageReducer} from "./profile-page-reducer";
+import {sideBarReducer} from "./side-bar-reduser";
 
 export type PotsType = {
     message: string,
@@ -38,7 +41,6 @@ export type RootStateType = {
     sideBar: SideBarType
 }
 
-
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
@@ -54,20 +56,6 @@ export type ActionType =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof changeNewMessageAC>
     | ReturnType<typeof addMessageAC>;
-
-export const changeNewPostAC = (newText: string) => {
-    return {type: "CHANGE-NEW-POST", newText: newText} as const
-}
-export const addPostAC = (postText: string) => {
-    return {type: "ADD-POST", postText: postText} as const
-}
-
-export const changeNewMessageAC = (newMessage: string) => {
-    return {type: "CHANGE-NEW-MESSAGE", newMessage} as const
-}
-export const addMessageAC = (newMessage: string) => {
-    return {type: "ADD-MESSAGE", newMessage} as const
-}
 
 export let store: StoreType = {
     _state: {
@@ -127,22 +115,10 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action: ActionType) {
-        if (action.type === "ADD-POST") {
-            this._state.profilePage.posts.push(<PotsType>{message: action.postText, id: v1()})
-            this._callSubscriber()
-            this.updateNewPostText('')
-        } else if (action.type === "CHANGE-NEW-POST") {
-            this._state.profilePage.newPost = action.newText
-            this._callSubscriber()
-        } else if (action.type === "CHANGE-NEW-MESSAGE") {
-            this._state.messagesPage.newMessage = action.newMessage
-            this._callSubscriber()
-        } else if (action.type === "ADD-MESSAGE") {
-            this._state.messagesPage.messages.push(<MessageType>{text: action.newMessage, id: v1()})
-            this._callSubscriber()
-            this.updateNewMessage()
-        } else {
-            console.log("Uncorect actionType ERROR")
-        }
-    }
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagePageReducer(this._state.messagesPage, action);
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action);
+
+        this._callSubscriber()
+    },
 }

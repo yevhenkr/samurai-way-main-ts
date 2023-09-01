@@ -1,37 +1,38 @@
 import React from 'react';
 import {DialogItems} from './DialogItems/DialogItems';
 import {Messages} from './Messages/Messages';
-import {
-    ActionType,
-    DialogPageType,
-} from '../../redux/state';
+import {DialogsType, MessageType,} from '../../redux/state';
 import s from './Dialogs.module.css'
 import TextFild from "../TextFieldArea/TextFieldArea";
 import SimpleButton from "../SimpleButton/SimpleButton";
-import {addMessageAC, changeNewMessageAC} from "../../redux/messages-page-reducer";
 
 type DialogPropsType = {
-    dialogPageType: DialogPageType
-    dispatch: (action: ActionType) => void
+    changeTextField: (text: string) => void
+    clickOnAddMessage: () => void
+    newMessage: string
+    dialogs: DialogsType[]
+    messages: MessageType[]
 }
+
 export const Dialogs = (props: DialogPropsType) => {
+
     const changeTextField = (text: string) => {
-        props.dispatch(changeNewMessageAC(text))
+        props.changeTextField(text)
     }
     const clickOnAddMessage = () => {
-        props.dispatch(addMessageAC(props.dialogPageType.newMessage))
+        props.clickOnAddMessage()
     }
 
     return <div className={s.dialogues}>
         <div className={s.dialoguesItems}>
-            <DialogItems dialogs={props.dialogPageType.dialogs}/>
+            <DialogItems dialogs={props.dialogs}/>
         </div>
 
         <div className={s.messages}>
-            <Messages messages={props.dialogPageType.messages}/>
+            <Messages messages={props.messages}/>
         </div>
         <div>
-            <TextFild text={props.dialogPageType.newMessage} callback={(newMessage) => changeTextField(newMessage)}/>
+            <TextFild text={props.newMessage} callback={(newMessage) => changeTextField(newMessage)}/>
             <SimpleButton name={"Add Message"} callback={clickOnAddMessage}/>
         </div>
     </div>

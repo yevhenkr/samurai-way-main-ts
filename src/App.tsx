@@ -5,9 +5,7 @@ import Navbar from './components/Nav/Navbar';
 import Profile from './components/Propfile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
-import {DialogPageType, ProfilePageType, SideBarType, StoreType} from './redux/state';
-import {stat} from "fs";
-
+import {StoreType} from './redux/state';
 
 type AppPropsType = {
     store: StoreType
@@ -23,7 +21,7 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Routes>
                     <Route path="/profile"
                            element={
-                               <Profile profilePage={state.profilePage}
+                               <Profile store={props.store} profilePage={state.profilePage}
                                         dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path="/dialogs" element={<Dialogs dialogPageType={state.messagesPage}
                                                              dispatch={props.store.dispatch.bind(props.store)}

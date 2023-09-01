@@ -1,9 +1,14 @@
-import {createStore} from "redux";
-function myReducer(state = {}) {
- // Логика обработки действий
- return state;
-}
+import {combineReducers, createStore} from "redux";
+import {profilePageReducer} from "./profile-page-reducer";
+import {messagePageReducer} from "./messages-page-reducer";
+import {sideBarReducer} from "./side-bar-reduser";
+import {StoreType} from "./state";
 
- let store = createStore(myReducer);
 
- export default store;
+let reducers = combineReducers({
+    profilePage: profilePageReducer,
+    messagesPage: messagePageReducer,
+    sideBar: sideBarReducer
+})
+
+export let store: StoreType = createStore(reducers)

@@ -1,4 +1,4 @@
-import {ActionType, ProfilePageType} from "./state";
+import {ActionType, PotsType, ProfilePageType} from "./state";
 import {v1} from "uuid";
 
 export const changeNewPostAC = (newText: string) => {
@@ -7,7 +7,17 @@ export const changeNewPostAC = (newText: string) => {
 export const addPostAC = (postText: string) => {
     return {type: "ADD-POST", postText: postText} as const
 }
-export const profilePageReducer = (state: ProfilePageType, action: ActionType) => {
+
+const initialState: ProfilePageType = {
+    posts: [
+        {message: 'bla bla', id: v1()},
+        {message: 'Ivan', id: v1()},
+        {message: 'Sergei', id: v1()},
+    ] as PotsType[],
+    newPost: 'it-camasutra'
+}
+
+export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType) => {
     switch (action.type) {
         case 'CHANGE-NEW-POST':
             return {

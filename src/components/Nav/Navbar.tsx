@@ -2,13 +2,12 @@ import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import Friends from '../Friend/Friends';
-import {SideBarType} from '../../redux/state';
+import {useContext} from 'react';
+import {StoreContext} from '../../store-context';
 
-type NavbarPropsType = {
-    sideBar: SideBarType
-}
+function Navbar() {
+    const store = useContext(StoreContext);
 
-function Navbar(props: NavbarPropsType) {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
@@ -28,7 +27,7 @@ function Navbar(props: NavbarPropsType) {
                 </NavLink>
             </div>
             <div style={{color: 'chocolate', textDecoration: 'underline'}}>Friends
-                <Friends friends={props.sideBar.friends}/>
+                <Friends friends={store.getState().sideBar.friends}/>
             </div>
         </nav>
     );

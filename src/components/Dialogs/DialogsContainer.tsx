@@ -1,22 +1,25 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {addMessageAC, changeNewMessageAC} from "../../redux/messages-page-reducer";
 import {Dialogs} from "./Dialogs";
-import {StoreContext} from '../../store-context';
+import {useSelector, useDispatch} from 'react-redux'
+import {AppStateType} from "../../redux/redux-store";
+import {DialogPageType} from "../../redux/state";
 
 export const DialogsContainer = () => {
-    const store = useContext(StoreContext);
+    const messagesPage = useSelector<AppStateType, DialogPageType>((state) => state.messagesPage)
+    const dispatch = useDispatch()
 
     const changeTextField = (text: string) => {
-        store.dispatch(changeNewMessageAC(text))
+        dispatch(changeNewMessageAC(text))
     }
     const clickOnAddMessage = () => {
-        store.dispatch(addMessageAC(store.getState().messagesPage.newMessage))
+        dispatch(addMessageAC(messagesPage.newMessage))
     }
 
     return <Dialogs changeTextField={(text) => changeTextField(text)}
                     clickOnAddMessage={clickOnAddMessage}
-                    newMessage={store.getState().messagesPage.newMessage}
-                    dialogs={store.getState().messagesPage.dialogs}
-                    messages={store.getState().messagesPage.messages}
+                    newMessage={messagesPage.newMessage}
+                    dialogs={messagesPage.dialogs}
+                    messages={messagesPage.messages}
     />
 }

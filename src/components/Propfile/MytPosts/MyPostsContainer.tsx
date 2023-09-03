@@ -1,26 +1,28 @@
 import React from 'react';
 import {addPostAC, changeNewPostAC} from "../../../redux/profile-page-reducer";
 import MyPosts from "./MyPosts";
-import {useContext} from 'react';
-import {StoreContext} from '../../../store-context';
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
+import {ProfilePageType} from "../../../redux/state";
 
 function MyPostsContainer() {
-    const store = useContext(StoreContext);
+    const profilePage = useSelector<AppStateType, ProfilePageType>(state => state.profilePage)
+    const dispatch = useDispatch()
 
     function addPost(newPost: string) {
-        store.dispatch(addPostAC(newPost))
+        dispatch(addPostAC(newPost))
     }
 
     const onChangeTextarea = (e: string) => {
-        store.dispatch(changeNewPostAC(e))
+        dispatch(changeNewPostAC(e))
     }
 
     return (
         <MyPosts
             addPost={(newPost) => addPost(newPost)}
             onChangeTextarea={(e) => onChangeTextarea(e)}
-            newPost={store.getState().profilePage.newPost}
-            posts={store.getState().profilePage.posts}
+            newPost={profilePage.newPost}
+            posts={profilePage.posts}
         />
     );
 }

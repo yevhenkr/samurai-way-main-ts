@@ -9,6 +9,6 @@ const initialState: SideBarType = {
         {name: 'Sveta', id: v1()},
     ] as FriendType[]
 } as SideBarType
-export const sideBarReducer = (state: SideBarType = initialState, action: ActionType) => {
+export const sideBarReducer = (state: SideBarType = initialState, action: ActionType): SideBarType => {
     return state
 }

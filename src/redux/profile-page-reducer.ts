@@ -26,7 +26,7 @@ const initialState: ProfilePageType = {
     newPost: 'it-camasutra'
 }
 
-export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType) => {
+export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
     switch (action.type) {
         case 'CHANGE-NEW-POST':
             return {

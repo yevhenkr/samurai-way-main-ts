@@ -1,14 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import PostsItems from './PostsItems/PostsItems';
-import {PotsType} from '../../../redux/state';
-
-type MyPostPropsType = {
-    addPost: (newPost: string) => void
-    onChangeTextarea: (e: string) => void
-    newPost: string
-    posts: PotsType[]
-}
+import {MyPostPropsType} from "./MyPostsContainer";
 
 function MyPosts(props: MyPostPropsType) {
     let newPost = React.createRef<HTMLTextAreaElement>()

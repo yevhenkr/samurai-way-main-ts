@@ -1,11 +1,24 @@
-import {ActionType, DialogPageType, DialogsType, MessageType} from "./state";
+import {ActionType} from "./state";
 import {v1} from "uuid";
+export type DialogPageType = {
+    dialogs: DialogsType[]
+    messages: MessageType[]
+    newMessage: string
+}
+export type DialogsType = {
+    name: string,
+    id: string
+}
+export type MessageType = {
+    text: string,
+    id: string
+}
 
 export const changeNewMessageAC = (newMessage: string) => {
     return {type: "CHANGE-NEW-MESSAGE", newMessage} as const
 }
-export const addMessageAC = (newMessage: string) => {
-    return {type: "ADD-MESSAGE", newMessage, id: v1()} as const
+export const addMessageAC = () => {
+    return {type: "ADD-MESSAGE", id: v1()} as const
 }
 
 const initialState: DialogPageType = {
@@ -24,7 +37,7 @@ const initialState: DialogPageType = {
     newMessage: ""
 }
 
-export const messagePageReducer = (state: DialogPageType = initialState, action: ActionType) => {
+export const messagePageReducer = (state: DialogPageType = initialState, action: ActionType):DialogPageType => {
     switch (action.type) {
         case 'CHANGE-NEW-MESSAGE':
             return {
@@ -34,7 +47,7 @@ export const messagePageReducer = (state: DialogPageType = initialState, action:
         case "ADD-MESSAGE":
             return {
                 ...state,
-                messages: [...state.messages, {text: action.newMessage, id: action.id}],
+                messages: [...state.messages, {text: state.newMessage, id: action.id}],
                 newMessage: ""
             }
         default:

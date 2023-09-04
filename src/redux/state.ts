@@ -12,15 +12,15 @@ export type ProfilePageType = {
     newPost: string
 }
 
-export type DialogsType = {
+type DialogsType = {
     name: string,
     id: string
 }
-export type MessageType = {
+type MessageType = {
     text: string,
     id: string
 }
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: DialogsType[]
     messages: MessageType[]
     newMessage: string

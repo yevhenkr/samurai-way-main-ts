@@ -1,18 +1,10 @@
 import React from 'react';
 import {DialogItems} from './DialogItems/DialogItems';
 import {Messages} from './Messages/Messages';
-import {DialogsType, MessageType,} from '../../redux/state';
 import s from './Dialogs.module.css'
 import TextFild from "../TextFieldArea/TextFieldArea";
 import SimpleButton from "../SimpleButton/SimpleButton";
-
-type DialogPropsType = {
-    changeTextField: (text: string) => void
-    clickOnAddMessage: () => void
-    newMessage: string
-    dialogs: DialogsType[]
-    messages: MessageType[]
-}
+import {DialogPropsType} from "./DialogsContainer";
 
 export const Dialogs = (props: DialogPropsType) => {
 

@@ -4,13 +4,13 @@ import {messagePageReducer} from "./messages-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {StoreType} from "./state";
 
-let rootReducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profilePageReducer,
     messagesPage: messagePageReducer,
     sideBar: sideBarReducer
 })
 
+export type AppStateType = ReturnType<typeof rootReducer>
 
-export const store: Store<StoreType> = createStore(rootReducers);
-
-export type AppStateType = ReturnType<typeof rootReducers>
+export const store: Store<StoreType> = createStore(rootReducer);
+export type AppDispatch = typeof store.dispatch

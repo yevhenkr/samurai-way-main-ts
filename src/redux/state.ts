@@ -3,11 +3,11 @@ import {addMessageAC, changeNewMessageAC, messagePageReducer} from "./messages-p
 import {addPostAC, changeNewPostAC, profilePageReducer} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 
-export type PotsType = {
+type PotsType = {
     message: string,
     id: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: PotsType[]
     newPost: string
 }

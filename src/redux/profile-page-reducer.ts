@@ -1,5 +1,14 @@
-import {ActionType, PotsType, ProfilePageType} from "./state";
+import {ActionType} from "./state";
 import {v1} from "uuid";
+
+export type PotsType = {
+    message: string,
+    id: string
+}
+export type ProfilePageType = {
+    posts: PotsType[]
+    newPost: string
+}
 
 export const changeNewPostAC = (newText: string) => {
     return {type: "CHANGE-NEW-POST", newText: newText} as const

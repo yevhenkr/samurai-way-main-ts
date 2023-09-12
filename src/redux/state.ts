@@ -2,6 +2,7 @@ import {v1} from 'uuid';
 import {addMessageAC, changeNewMessageAC, messagePageReducer} from "./messages-page-reducer";
 import {addPostAC, changeNewPostAC, profilePageReducer} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
+import {addUsersAC, changeFollowedAC} from "./users-reducer";
 
 type PotsType = {
     message: string,
@@ -52,7 +53,10 @@ export type ActionType =
     ReturnType<typeof changeNewPostAC>
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof changeNewMessageAC>
-    | ReturnType<typeof addMessageAC>;
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof changeFollowedAC>
+    | ReturnType<typeof addUsersAC>
+;
 
 export let store: StoreType = {
     _state: {

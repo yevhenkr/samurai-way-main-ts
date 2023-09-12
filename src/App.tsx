@@ -5,6 +5,7 @@ import Navbar from './components/Nav/Navbar';
 import Profile from './components/Propfile/Profile';
 import {Route, Routes} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 const App = () => {
     return (
@@ -19,6 +20,8 @@ const App = () => {
                         <DialogsContainer/>}/>
                     <Route path={'/dialogs/:id'}
                            element={<DialogsContainer/>}/>
+                    <Route path={'/users'}
+                           element={<UsersContainer/>}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </Routes>

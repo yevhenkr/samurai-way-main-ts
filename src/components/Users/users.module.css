@@ -1,0 +1,47 @@
+
+.items{
+    row-gap: 10px;
+display: flex;
+    flex-direction: column;
+}
+.item {
+    border: solid 1px grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.followed {
+    width: 100%;
+    max-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemName {
+    font-size: 10px;
+    color: #008cff;
+}
+
+.aboutUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 10px;
+    /*align-items: center;*/
+}
+.aboutUserLeft{
+    text-align: Left;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*align-items: center;*/
+}
+
+.country{
+    text-align: right;
+}

@@ -27,6 +27,10 @@ function Navbar() {
                 <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/Music'}>Music
                 </NavLink>
             </div>
+            <div className={s.item}>
+                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/Users'}>Users
+                </NavLink>
+            </div>
             <div style={{color: 'chocolate', textDecoration: 'underline'}}>Friends
                 <Friends friends={sidebar.friends}/>
             </div>

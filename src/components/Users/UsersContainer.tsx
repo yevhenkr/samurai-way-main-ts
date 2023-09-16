@@ -1,11 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Users} from "./Users";
+import {UsersC} from "./UsersC";
 import {AppDispatch, AppStateType} from "../../redux/redux-store";
 import {addUsersAC, changeFollowedAC, UsersPageType, UserType} from "../../redux/users-reducer";
 
 export type UsersPropsType = {
-    users: UserType[]
     changeFollowed: (id: number, isFollowed: boolean) => void,
     addUsers: () => void
 }
@@ -31,4 +30,4 @@ const mapDispatchToPropsType = (dispatch: AppDispatch): UsersMapDispatchToPropsT
     }
 }
 
-export const UsersContainer = connect(mapStateToPropsType, mapDispatchToPropsType)(Users)
+export const UsersContainer = connect(mapStateToPropsType, mapDispatchToPropsType)(UsersC)

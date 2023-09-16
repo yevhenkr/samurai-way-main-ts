@@ -7,12 +7,16 @@ type LocationType = {
     country: string,
     city: string
 }
+type PhotoType = {
+    small: string
+}
 export type UserType = {
     id: number,
-    fullName: string,
+    name: string,
     followed: boolean,
     status: string,
     location: LocationType
+    photos: PhotoType
 }
 
 export const changeFollowedAC = (id: number, isFollowed: boolean) => {
@@ -28,21 +32,21 @@ const initialState: UsersPageType = {
     users: [
         {
             id: 345,
-            fullName: "Eugen",
+            name: "Eugen",
             followed: true,
             location: {city: "Zaporozhye", country: "Ukraine"},
             status: "Im love volleyball"
         },
         {
             id: 565,
-            fullName: "Ivan",
+            name: "Ivan",
             followed: false,
             location: {city: "Dnipro", country: "Ukraine"},
             status: "Im love bascetboll"
         },
         {
             id: 34564,
-            fullName: "Sergiy",
+            name: "Sergiy",
             followed: true,
             location: {city: "Vrotslav", country: "Poland"},
             status: "Im love syatcuvka"
@@ -63,10 +67,11 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                 ...state,
                 users: [...state.users, {
                     id: 345435,
-                    fullName: "Eugen",
+                    name: "Eugen",
                     followed: true,
                     location: {city: "Zaporozhye", country: "Ukraine"},
-                    status: "Im love volleyball"
+                    status: "Im love volleyball",
+                    photos: {small: ""}
                 }]
             }
         default:

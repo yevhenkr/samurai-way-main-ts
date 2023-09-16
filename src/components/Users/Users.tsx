@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {UsersPropsType} from "./UsersContainer";
 import s from "./users.module.css"
 import {GetUsers, usersAPI} from "../API/users-api";
+import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 
 
 export const Users = (props: UsersPropsType) => {
@@ -19,11 +20,14 @@ export const Users = (props: UsersPropsType) => {
                 setUsers(res.data.items)
             })
     }
-
     let useItems = users.map(user =>
         <div className={s.item}>
-            <button onClick={() => followedOnClickHandler(user.id, !user.followed)}
-                    className={s.followed}>{user.followed ? "Follow" : "Unfollow"}</button>
+            <div>
+                <img className={s.itemImg} src={user.photo.small ? user.photo.small : defaultUserIcon}
+                     alt="Описание изображения"/>
+                <button onClick={() => followedOnClickHandler(user.id, !user.followed)}
+                        className={s.followed}>{user.followed ? "Follow" : "Unfollow"}</button>
+            </div>
             <div className={s.aboutUser}>
                 <div className={s.aboutUserLeft}>
                     <div className={s.itemName}>{user.name}</div>

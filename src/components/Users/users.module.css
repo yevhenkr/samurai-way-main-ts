@@ -11,7 +11,9 @@ display: flex;
     flex-direction: row;
     column-gap: 10px;
 }
-
+.itemImg {
+ max-height: 80px;
+}
 .followed {
     width: 100%;
     max-width: 80px;

@@ -1,5 +1,4 @@
 import {ActionType} from "./state";
-import {v1} from "uuid";
 
 export type UsersPageType = {
     users: UserType[]
@@ -9,14 +8,14 @@ type LocationType = {
     city: string
 }
 export type UserType = {
-    id: string,
+    id: number,
     fullName: string,
     followed: boolean,
     status: string,
     location: LocationType
 }
 
-export const changeFollowedAC = (id: string, isFollowed: boolean) => {
+export const changeFollowedAC = (id: number, isFollowed: boolean) => {
     return {type: "CHANGE-FOLLOWED", id, isFollowed} as const
 }
 
@@ -28,21 +27,21 @@ export const addUsersAC = (): { type: "ADD-USERS" } => {
 const initialState: UsersPageType = {
     users: [
         {
-            id: v1(),
+            id: 345,
             fullName: "Eugen",
             followed: true,
             location: {city: "Zaporozhye", country: "Ukraine"},
             status: "Im love volleyball"
         },
         {
-            id: v1(),
+            id: 565,
             fullName: "Ivan",
             followed: false,
             location: {city: "Dnipro", country: "Ukraine"},
             status: "Im love bascetboll"
         },
         {
-            id: v1(),
+            id: 34564,
             fullName: "Sergiy",
             followed: true,
             location: {city: "Vrotslav", country: "Poland"},
@@ -63,7 +62,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             return {
                 ...state,
                 users: [...state.users, {
-                    id: v1(),
+                    id: 345435,
                     fullName: "Eugen",
                     followed: true,
                     location: {city: "Zaporozhye", country: "Ukraine"},

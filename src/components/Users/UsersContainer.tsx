@@ -6,7 +6,7 @@ import {addUsersAC, changeFollowedAC, UsersPageType, UserType} from "../../redux
 
 export type UsersPropsType = {
     users: UserType[]
-    changeFollowed: (id: string, isFollowed: boolean) => void,
+    changeFollowed: (id: number, isFollowed: boolean) => void,
     addUsers: () => void
 }
 
@@ -17,12 +17,12 @@ const mapStateToPropsType = (state: AppStateType): UsersPageType => {
 }
 
 type UsersMapDispatchToPropsType = {
-    changeFollowed: (id: string, isFollowed: boolean) => void,
+    changeFollowed: (id: number, isFollowed: boolean) => void,
     addUsers: () => void
 }
 const mapDispatchToPropsType = (dispatch: AppDispatch): UsersMapDispatchToPropsType => {
     return {
-        changeFollowed: (id: string, isFollowed: boolean) => {
+        changeFollowed: (id: number, isFollowed: boolean) => {
             dispatch(changeFollowedAC(id, isFollowed))
         },
         addUsers: () => {

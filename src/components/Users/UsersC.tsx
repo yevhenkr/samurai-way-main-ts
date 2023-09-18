@@ -1,34 +1,47 @@
 import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import s from "./users.module.css"
-import {usersAPI} from "../API/users-api";
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
-import {UserType} from "../../redux/users-reducer";
+import axios from "axios";
 
-interface UsersState {
-    users: UserType[];
-}
 
 export class UsersC extends React.Component<UsersPropsType> {
-    state: UsersState = {
-        users: [], // Храним полученных пользователей в состоянии
-    };
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${3}&count${10}`).then((res) => {
+            this.props.setUsers(res.data.items)
+            this.props.setTotalCount(res.data.totalCount)
+        });
+    }
+
     followedOnClickHandler = (id: number, isFollowed: boolean) => {
         this.props.changeFollowed(id, isFollowed)
     }
 
-    componentDidMount() {
-        usersAPI.getUsers().then((res) => {
-            // console.log({users: [res.data.items]})
-            console.log(res.data.items)
-            debugger
-            this.setState({users: res.data.items});
+    onPageChange(currenPage: number) {
+        this.props.setCurrentPage(currenPage)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currenPage}&count${10}`).then((res) => {
+            this.props.setUsers(res.data.items)
         });
     }
 
+    pageCount: number = Math.ceil(this.props.totalUserCount / this.props.pageSize)
+    pageArray: number[] = []
+
     render() {
+        debugger
+        this.pageArray = []
+        for (let i = 1; i <= this.pageCount; i++) {
+            this.pageArray.push(i);
+        }
         return <div className={s.items}>
-            {this.state.users.map(user =>
+            <div>
+                {this.pageArray.map(page => {
+                    return <span onClick={(e) => this.onPageChange(page)}
+                                 className={page === this.props.currentPage ? s.currentPage : ""}
+                    >{page}</span>
+                })}
+            </div>
+            {this.props.users.map(user =>
                 <div className={s.item} key={user?.id}>
                     <div>
                         <img className={s.itemImg} src={user?.photos?.small ? user?.photos?.small : defaultUserIcon}

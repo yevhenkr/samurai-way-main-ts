@@ -1,7 +1,10 @@
 import {ActionType} from "./state";
 
-export type UsersPageType = {
+export type  UsersPageType = {
     users: UserType[]
+    pageSize: number
+    totalUserCount: number
+    currentPage: number
 }
 type LocationType = {
     country: string,
@@ -23,9 +26,14 @@ export const changeFollowedAC = (id: number, isFollowed: boolean) => {
     return {type: "CHANGE-FOLLOWED", id, isFollowed} as const
 }
 
-
-export const addUsersAC = (): { type: "ADD-USERS" } => {
-    return {type: "ADD-USERS"}
+export const setUsersAC = (users: UserType[]): { type: "SET-USERS"; users: UserType[] } => {
+    return {type: "SET-USERS", users} as const
+}
+export const setCurrentPage = (currentPage: number) => {
+    return {type: "SET-CURRENT-PAGE", currentPage} as const
+}
+export const setTotalUserCount = (count: number) => {
+    return {type: "SET-TOTAL-USER-COUNT", count} as const
 }
 
 const initialState: UsersPageType = {
@@ -51,7 +59,10 @@ const initialState: UsersPageType = {
             location: {city: "Vrotslav", country: "Poland"},
             status: "Im love syatcuvka"
         },
-    ] as UserType[]
+    ] as UserType[],
+    pageSize: 10,
+    totalUserCount: 101,
+    currentPage: 1
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
@@ -62,17 +73,17 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                     ? {...user, followed: action.isFollowed}
                     : user)]
             }
-        case "ADD-USERS":
+        case "SET-USERS":
             return {
-                ...state,
-                users: [...state.users, {
-                    id: 345435,
-                    name: "Eugen",
-                    followed: true,
-                    location: {city: "Zaporozhye", country: "Ukraine"},
-                    status: "Im love volleyball",
-                    photos: {small: ""}
-                }]
+                ...state, users: action.users
+            }
+        case "SET-CURRENT-PAGE":
+            return {
+                ...state, currentPage: action.currentPage
+            }
+        case "SET-TOTAL-USER-COUNT":
+            return {
+                ...state, totalUserCount: action.count
             }
         default:
             return state

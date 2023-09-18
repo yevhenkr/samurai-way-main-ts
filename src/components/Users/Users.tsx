@@ -11,9 +11,6 @@ export const Users = (props: UsersPropsType) => {
     const followedOnClickHandler = (id: number, isFollowed: boolean) => {
         props.changeFollowed(id, isFollowed)
     }
-    const addUsersOnClickHandler = () => {
-        props.addUsers()
-    }
     const getUsersFromServerOnClickHandler = () => {
         usersAPI.getUsers()
             .then((res) => {
@@ -41,7 +38,7 @@ export const Users = (props: UsersPropsType) => {
         </div>)
 
     return <div className={s.items}>{useItems}
-        <button onClick={addUsersOnClickHandler}>{"add users"}</button>
+        {/*<button onClick={addUsersOnClickHandler}>{"add users"}</button>*/}
         <button onClick={getUsersFromServerOnClickHandler}>{"addUsers FromServer"}</button>
     </div>
 }

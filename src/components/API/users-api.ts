@@ -7,11 +7,14 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers<ResponseType>() {
-        return instance.get("")
+        return instance.get(`?page=${1}`)
+    },
+    getCurrentPage<ResponseType>(currentPage: number) {
+        return instance.get(`?page=${currentPage}`)
     }
 }
 
-export type GetUsers={
+export type GetUsers = {
     name: string,
     id: number,
     uniqueUrlName: string,

@@ -1,44 +1,44 @@
-import React, {useState} from "react";
-import {UsersPropsType} from "./UsersContainer";
+import React from "react";
 import s from "./users.module.css"
-import {GetUsers, usersAPI} from "../API/users-api";
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
+import {UserType} from "../../redux/users-reducer";
 
+type UsersPropsType = {
+    pageArray: number[]
+    onPageChange: (currenPage: number) => void
+    currentPage: number
+    users: UserType[]
+    followedOnClickHandler: (id: number, isFollowed: boolean) => void
+}
+export const Users: React.FC<UsersPropsType> = (props) => {
 
-export const Users = (props: UsersPropsType) => {
-    const [users, setUsers] = useState<GetUsers[]>([])
-
-    const followedOnClickHandler = (id: number, isFollowed: boolean) => {
-        props.changeFollowed(id, isFollowed)
-    }
-    const getUsersFromServerOnClickHandler = () => {
-        usersAPI.getUsers()
-            .then((res) => {
-                setUsers(res.data.items)
-            })
-    }
-    let useItems = users.map(user =>
-        <div className={s.item}>
-            <div>
-                <img className={s.itemImg} src={user.photo.small ? user.photo.small : defaultUserIcon}
-                     alt="Описание изображения"/>
-                <button onClick={() => followedOnClickHandler(user.id, !user.followed)}
-                        className={s.followed}>{user.followed ? "Follow" : "Unfollow"}</button>
-            </div>
-            <div className={s.aboutUser}>
-                <div className={s.aboutUserLeft}>
-                    <div className={s.itemName}>{user.name}</div>
-                    <div>{user.status}</div>
-                </div>
+    return <div className={s.items}>
+        <div>
+            {props.pageArray.map(page => {
+                return <span onClick={(e) => props.onPageChange(page)}
+                             className={page === props.currentPage ? s.currentPage : ""}
+                >{page}</span>
+            })}
+        </div>
+        {props.users.map(user =>
+            <div className={s.item} key={user?.id}>
                 <div>
-                    <div className={s.country}>{"user.location.country"}</div>
-                    <div className={s.city}>{"user.location.city"}</div>
+                    <img className={s.itemImg} src={user?.photos?.small ? user?.photos?.small : defaultUserIcon}
+                         alt="Описание изображения"/>
+                    <button onClick={() => props.followedOnClickHandler(user?.id, !user?.followed)}
+                            className={s.followed}>{user.followed ? "Follow" : "Unfollow"}</button>
                 </div>
-            </div>
-        </div>)
-
-    return <div className={s.items}>{useItems}
-        {/*<button onClick={addUsersOnClickHandler}>{"add users"}</button>*/}
-        <button onClick={getUsersFromServerOnClickHandler}>{"addUsers FromServer"}</button>
+                <div className={s.aboutUser}>
+                    <div className={s.aboutUserLeft}>
+                        <div className={s.itemName}>{user?.name}</div>
+                        <div>{user?.status}</div>
+                    </div>
+                    <div>
+                        <div className={s.country}>{user?.location?.country}</div>
+                        <div className={s.city}>{user?.location?.city}</div>
+                    </div>
+                </div>
+            </div>)}
+        {/*<button onClick={this.getUsersFromServerOnClickHandler}>{"addUsers FromServer"}</button>*/}
     </div>
 }

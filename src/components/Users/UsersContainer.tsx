@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {UsersC} from "./UsersC";
+import {UsersCAPIComponent} from "./UsersCAPIComponent";
 import {AppDispatch, AppStateType} from "../../redux/redux-store";
 import {
     changeFollowedAC,
@@ -54,4 +54,4 @@ const mapDispatchToPropsType = (dispatch: AppDispatch): UsersMapDispatchToPropsT
     }
 }
 
-export const UsersContainer = connect(mapStateToPropsType, mapDispatchToPropsType)(UsersC)
+export const UsersContainer = connect(mapStateToPropsType, mapDispatchToPropsType)(UsersCAPIComponent)

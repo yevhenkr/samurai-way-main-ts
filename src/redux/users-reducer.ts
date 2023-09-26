@@ -5,6 +5,7 @@ export type  UsersPageType = {
     pageSize: number
     totalUserCount: number
     currentPage: number
+    isFetching: boolean
 }
 type LocationType = {
     country: string,
@@ -22,11 +23,11 @@ export type UserType = {
     photos: PhotoType
 }
 
-export const changeFollowedAC = (id: number, isFollowed: boolean) => {
+export const changeFollowed = (id: number, isFollowed: boolean) => {
     return {type: "CHANGE-FOLLOWED", id, isFollowed} as const
 }
 
-export const setUsersAC = (users: UserType[]): { type: "SET-USERS"; users: UserType[] } => {
+export const setUsers = (users: UserType[]): { type: "SET-USERS"; users: UserType[] } => {
     return {type: "SET-USERS", users} as const
 }
 export const setCurrentPage = (currentPage: number) => {
@@ -34,6 +35,9 @@ export const setCurrentPage = (currentPage: number) => {
 }
 export const setTotalUserCount = (count: number) => {
     return {type: "SET-TOTAL-USER-COUNT", count} as const
+}
+export const toggleIsFetching = (isFetching: boolean) => {
+    return {type: "TOGGLE-IS-FETCHING", isFetching} as const
 }
 
 const initialState: UsersPageType = {
@@ -62,7 +66,8 @@ const initialState: UsersPageType = {
     ] as UserType[],
     pageSize: 10,
     totalUserCount: 101,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
@@ -84,6 +89,10 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
         case "SET-TOTAL-USER-COUNT":
             return {
                 ...state, totalUserCount: action.count
+            }
+        case "TOGGLE-IS-FETCHING":
+            return {
+                ...state, isFetching: action.isFetching
             }
         default:
             return state

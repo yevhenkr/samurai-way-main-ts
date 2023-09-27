@@ -1,12 +1,12 @@
 import React from 'react';
-import { addMessageAC, changeNewMessageAC,
-    DialogPageType,
+import {
+    addMessage, changeNewMessage,
     DialogsType,
     MessageType
 } from "../../redux/messages-page-reducer";
-import { Dialogs} from "./Dialogs";
-import {useSelector, useDispatch, connect} from 'react-redux'
-import {AppDispatch, AppStateType} from "../../redux/redux-store";
+import {Dialogs} from "./Dialogs";
+import {connect} from 'react-redux'
+import {AppStateType} from "../../redux/redux-store";
 
 
 type MapStateToPropsType = {
@@ -23,21 +23,21 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 type MapDispatchPropsType = {
-    changeTextField: (newMessage: string) => void
-    clickOnAddMessage: () => void
+    changeNewMessage: (newMessage: string) => void
+    addMessage: () => void
 }
 
 export type DialogPropsType = MapStateToPropsType & MapDispatchPropsType
 
-const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchPropsType => {
-    return {
-        changeTextField: (newMessage: string) => {
-            dispatch(changeNewMessageAC(newMessage))
-        },
-        clickOnAddMessage: () => {
-            dispatch(addMessageAC())
-        },
-    }
-}
+// const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchPropsType => {
+//     return {
+//         changeTextField: (newMessage: string) => {
+//             dispatch(changeNewMessage(newMessage))
+//         },
+//         clickOnAddMessage: () => {
+//             dispatch(addMessage())
+//         },
+//     }
+// }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, {changeNewMessage, addMessage})(Dialogs)

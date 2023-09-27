@@ -9,10 +9,10 @@ import {DialogPropsType} from "./DialogsContainer";
 export const Dialogs = (props: DialogPropsType) => {
 
     const changeTextField = (text: string) => {
-        props.changeTextField(text)
+        props.changeNewMessage(text)
     }
     const clickOnAddMessage = () => {
-        props.clickOnAddMessage()
+        props.addMessage()
     }
 
     return <div className={s.dialogues}>

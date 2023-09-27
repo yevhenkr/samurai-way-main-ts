@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {addMessageAC, changeNewMessageAC, messagePageReducer} from "./messages-page-reducer";
+import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-reducer";
 import {addPostAC, changeNewPostAC, profilePageReducer} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {changeFollowed, setCurrentPage, setTotalUserCount, setUsers, toggleIsFetching} from "./users-reducer";
@@ -52,8 +52,8 @@ export type StoreType = {
 export type ActionType =
     ReturnType<typeof changeNewPostAC>
     | ReturnType<typeof addPostAC>
-    | ReturnType<typeof changeNewMessageAC>
-    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof changeNewMessage>
+    | ReturnType<typeof addMessage>
     | ReturnType<typeof changeFollowed>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUserCount>

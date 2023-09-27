@@ -2,6 +2,7 @@ import React from "react";
 import s from "./users.module.css"
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 import {UserType} from "../../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -23,8 +24,10 @@ export const Users: React.FC<UsersPropsType> = (props) => {
         {props.users.map(user =>
             <div className={s.item} key={user?.id}>
                 <div>
-                    <img className={s.itemImg} src={user?.photos?.small ? user?.photos?.small : defaultUserIcon}
-                         alt="Описание изображения"/>
+                    <NavLink to={`/profile/${user.id}`}>
+                        <img className={s.itemImg} src={user?.photos?.small ? user?.photos?.small : defaultUserIcon}
+                             alt="Описание изображения"/>
+                    </NavLink>
                     <button onClick={() => props.followedOnClickHandler(user?.id, !user?.followed)}
                             className={s.followed}>{user.followed ? "Follow" : "Unfollow"}</button>
                 </div>

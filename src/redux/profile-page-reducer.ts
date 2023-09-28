@@ -1,4 +1,4 @@
-import {ActionType} from "./state";
+import {ActionType, ProfileObject} from "./state";
 import {v1} from "uuid";
 
 export type PotsType = {
@@ -8,6 +8,7 @@ export type PotsType = {
 export type ProfilePageType = {
     posts: PotsType[]
     newPost: string
+    profile:ProfileObject
 }
 
 export const changeNewPostAC = (newText: string) => {
@@ -16,6 +17,10 @@ export const changeNewPostAC = (newText: string) => {
 export const addPostAC = (postText: string) => {
     return {type: "ADD-POST", postText: postText} as const
 }
+export const setUserProfile = (profile: any) => {
+    return {type: "SET-USER-PROFILE", profile} as const
+}
+
 
 const initialState: ProfilePageType = {
     posts: [
@@ -23,7 +28,26 @@ const initialState: ProfilePageType = {
         {message: 'Ivan', id: v1()},
         {message: 'Sergei', id: v1()},
     ] as PotsType[],
-    newPost: 'it-camasutra'
+    newPost: 'it-camasutra',
+    profile: {
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            vk: '',
+            twitter: '',
+            instagram: '',
+            github: '',
+        },
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: '',
+            large: '',
+        },
+    }
+
 }
 
 export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
@@ -38,6 +62,12 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
                 ...state,
                 posts: [...state.posts, {message: action.postText, id: v1()}],
                 newPost: ""
+            }
+            case "SET-USER-PROFILE":
+                debugger
+            return {
+                ...state,
+                profile:  action.profile
             }
         default:
             return state

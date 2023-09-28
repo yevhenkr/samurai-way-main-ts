@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
 import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-reducer";
-import {addPostAC, changeNewPostAC, profilePageReducer} from "./profile-page-reducer";
+import {addPostAC, changeNewPostAC, profilePageReducer, ProfilePageType, setUserProfile} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {changeFollowed, setCurrentPage, setTotalUserCount, setUsers, toggleIsFetching} from "./users-reducer";
 
@@ -8,10 +8,10 @@ type PotsType = {
     message: string,
     id: string
 }
-type ProfilePageType = {
-    posts: PotsType[]
-    newPost: string
-}
+// type ProfilePageType = {
+//     posts: PotsType[]
+//     newPost: string
+// }
 
 type DialogsType = {
     name: string,
@@ -49,6 +49,30 @@ export type StoreType = {
     subscribe: (callback: () => void) => void
     dispatch: (action: ActionType) => void
 }
+
+export type ProfileObject = {
+	aboutMe: string;
+	contacts: ProfileObjectContacts;
+	lookingForAJob: boolean;
+	lookingForAJobDescription: string;
+	fullName: string;
+	userId: number;
+	photos: ProfileObjectPhotos;
+}
+export type ProfileObjectContacts = {
+	facebook: string;
+	website?: any;
+	vk: string;
+	twitter: string;
+	instagram: string;
+	youtube?: any;
+	github: string;
+	mainLink?: any;
+}
+export type ProfileObjectPhotos = {
+	small: string;
+	large: string;
+}
 export type ActionType =
     ReturnType<typeof changeNewPostAC>
     | ReturnType<typeof addPostAC>
@@ -59,6 +83,7 @@ export type ActionType =
     | ReturnType<typeof setTotalUserCount>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof setUserProfile>
     ;
 
 export let store: StoreType = {
@@ -69,7 +94,25 @@ export let store: StoreType = {
                 {message: 'Ivan', id: v1()},
                 {message: 'Sergei', id: v1()},
             ] as PotsType[],
-            newPost: 'it-camasutra'
+            newPost: 'it-camasutra',
+            profile: {
+                aboutMe: '',
+                contacts: {
+                    facebook: '',
+                    vk: '',
+                    twitter: '',
+                    instagram: '',
+                    github: '',
+                },
+                lookingForAJob: false,
+                lookingForAJobDescription: '',
+                fullName: '',
+                userId: 0,
+                photos: {
+                    small: '',
+                    large: '',
+                },
+            }
         },
         messagesPage: {
             dialogs: [

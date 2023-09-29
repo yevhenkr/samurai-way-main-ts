@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './Profileinfo.module.css'
+import {ProfilePropsType} from "../../Profile";
 
-function ProfileInfo() {
+function ProfileInfo(props: ProfilePropsType) {
     return (
         <>
             <div>
@@ -9,6 +10,7 @@ function ProfileInfo() {
             </div>
             <div className={s.descriptionBlock}>
                 {/*<img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>*/}
+                <img src={props.profile.photos.large}/>
                 ava + dicript
             </div>
         </>

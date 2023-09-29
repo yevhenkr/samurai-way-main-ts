@@ -8,7 +8,7 @@ export type PotsType = {
 export type ProfilePageType = {
     posts: PotsType[]
     newPost: string
-    profile:ProfileObject
+    profile: ProfileObject
 }
 
 export const changeNewPostAC = (newText: string) => {
@@ -47,7 +47,6 @@ const initialState: ProfilePageType = {
             large: '',
         },
     }
-
 }
 
 export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
@@ -63,11 +62,10 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
                 posts: [...state.posts, {message: action.postText, id: v1()}],
                 newPost: ""
             }
-            case "SET-USER-PROFILE":
-                debugger
+        case "SET-USER-PROFILE":
             return {
                 ...state,
-                profile:  action.profile
+                profile: action.profile
             }
         default:
             return state

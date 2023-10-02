@@ -8,7 +8,6 @@ export type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
-    console.log(props.profile)
     return (
         <div>
             <Profileinfo profile={props.profile}/>

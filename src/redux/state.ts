@@ -49,29 +49,28 @@ export type StoreType = {
     subscribe: (callback: () => void) => void
     dispatch: (action: ActionType) => void
 }
-
 export type ProfileObject = {
-	aboutMe: string;
-	contacts: ProfileObjectContacts;
-	lookingForAJob: boolean;
-	lookingForAJobDescription: string;
-	fullName: string;
-	userId: number;
-	photos: ProfileObjectPhotos;
+    aboutMe: string;
+    contacts: ProfileObjectContacts;
+    lookingForAJob: boolean;
+    lookingForAJobDescription: string;
+    fullName: string;
+    userId: number;
+    photos: ProfileObjectPhotos;
 }
 export type ProfileObjectContacts = {
-	facebook: string;
-	website?: any;
-	vk: string;
-	twitter: string;
-	instagram: string;
-	youtube?: any;
-	github: string;
-	mainLink?: any;
+    facebook: string;
+    website?: any;
+    vk: string;
+    twitter: string;
+    instagram: string;
+    youtube?: any;
+    github: string;
+    mainLink?: any;
 }
 export type ProfileObjectPhotos = {
-	small: string;
-	large: string;
+    small: string;
+    large: string;
 }
 export type ActionType =
     ReturnType<typeof changeNewPostAC>

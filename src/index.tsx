@@ -5,13 +5,13 @@ import './index.css';
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import App from "./App";
+import {App} from "./App";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
+    <Provider store={store}>
+        <BrowserRouter>
             <App/>
-        </Provider>
-    </BrowserRouter>,
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root')
 );

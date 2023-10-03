@@ -7,28 +7,28 @@ import {AppStateType} from "../../redux/redux-store";
 import {SideBarType} from "../../redux/state";
 
 function Navbar() {
-    const sidebar =useSelector<AppStateType, SideBarType>(state => state.sideBar)
+    const sidebar = useSelector<AppStateType, SideBarType>(state => state.sideBar)
 
     return (
         <nav className={s.nav}>
             <div className={s.item}>
-                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/profile'}>Profile
+                <NavLink className={s.nav} activeClassName={s.active} to={'/profile'}>Profile
                 </NavLink>
             </div>
             <div className={`${s.item} ${s.active}`}>
-                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/dialogs'}>Messages
+                <NavLink className={s.nav} activeClassName={s.active} to={'/dialogs'}>Messages
                 </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/News'}>News
+                <NavLink className={s.nav} activeClassName={s.active} to={'/News'}>News
                 </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/Music'}>Music
+                <NavLink className={s.nav} activeClassName={s.active} to={'/Music'}>Music
                 </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink className={({isActive}) => isActive ? s.active : s.nav} to={'/Users'}>Users
+                <NavLink className={s.nav} activeClassName={s.active} to={'/Users'}>Users
                 </NavLink>
             </div>
             <div style={{color: 'chocolate', textDecoration: 'underline'}}>Friends

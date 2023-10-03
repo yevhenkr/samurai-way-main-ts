@@ -20,7 +20,12 @@ type PropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentPr
 
 class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/2`).then((res) => {
+        // Получение параметра 'id' из URL
+        let userId = this.props.match.params.id;
+        if (!userId) {
+            userId = '2'
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then((res) => {
             this.props.setUserProfile(res.data)
         });
     }

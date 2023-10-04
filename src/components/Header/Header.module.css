@@ -1,7 +1,16 @@
-.header{
+.header {
     background-color: #008cff;;
     grid-area: h;
 }
-.header img{
+
+.header img {
     max-height: 50px;
+}
+
+.loginBlock {
+    float: right;
+}
+
+.loginBlock a {
+    color: black;
 }

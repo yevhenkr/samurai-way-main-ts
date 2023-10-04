@@ -4,12 +4,14 @@ import {messagePageReducer} from "./messages-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {usersReducer} from "./users-reducer";
 import {StoreType} from "./state";
+import {authReducer} from "./auth-reducer";
 
 let rootReducer = combineReducers({
     profilePage: profilePageReducer,
     messagesPage: messagePageReducer,
     sideBar: sideBarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>

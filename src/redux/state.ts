@@ -3,6 +3,7 @@ import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-
 import {addPostAC, changeNewPostAC, profilePageReducer, ProfilePageType, setUserProfile} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {changeFollowed, setCurrentPage, setTotalUserCount, setUsers, toggleIsFetching} from "./users-reducer";
+import {getAuthMe} from "./auth-reducer";
 
 type PotsType = {
     message: string,
@@ -83,6 +84,7 @@ export type ActionType =
     | ReturnType<typeof setUsers>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof getAuthMe>
     ;
 
 export let store: StoreType = {

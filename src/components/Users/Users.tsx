@@ -3,7 +3,8 @@ import s from "./users.module.css"
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
+import {usersAPI} from "../API/usersAPI";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -41,30 +42,18 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     <div>
                         {user.followed
                             ? <button onClick={() => {
-
-                                instance.delete<ResponseType<{ userId: number }>, AxiosResponse<ResponseType<{
-                                    userId: number
-                                }>>>
-                                (`/follow/${user.id}`, {})
-                                    .then((res) => {
-
-                                        if (res.data.resultCode === 0) {
-                                            props.unfallow(user.id)
-                                        }
-                                    });
+                                usersAPI.unFollowed(user.id).then((data) => {
+                                    if (data.resultCode === 0) {
+                                        props.unfallow(user.id)
+                                    }
+                                });
                             }}>{'Unfollow'}</button>
                             : <button onClick={() =>
-
-                                instance.post
-                                (`/follow/${user.id}`, {})
-                                    .then((res) => {
-                                        console.log(res)
-
-
-                                        if (res.data.resultCode === 0) {
-                                            props.fallow(user.id)
-                                        }
-                                    })}>{'Follow'}</button>
+                                usersAPI.followed(user.id).then((data) => {
+                                    if (data.resultCode === 0) {
+                                        props.fallow(user.id)
+                                    }
+                                })}>{'Follow'}</button>
                         }
                     </div>
                 </div>

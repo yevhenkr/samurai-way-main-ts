@@ -1,8 +1,8 @@
 import React from "react";
 import {UsersPropsType} from "./UsersContainer";
-import axios from "axios";
 import {Users} from "./Users";
 import Preloader from "../comman/preloader/Preloader";
+import {usersAPI} from "../API/usersAPI";
 
 
 export class UsersCAPIComponent extends React.Component<UsersPropsType> {
@@ -12,11 +12,13 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     }
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${3}&count${10}`).then((res) => {
-            this.props.setUsers(res.data.items)
-            this.props.setTotalUserCount(res.data.totalCount)
-            this.props.toggleIsFetching(false)
-        });
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+            .then((data) => {
+                debugger
+                this.props.setUsers(data.items)
+                this.props.setTotalUserCount(data.totalCount)
+                this.props.toggleIsFetching(false)
+            });
     }
 
     followedOnClickHandler = (id: number, isFollowed: boolean) => {
@@ -33,8 +35,8 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     onPageChange(currenPage: number) {
         this.props.setCurrentPage(currenPage)
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currenPage}&count${10}`).then((res) => {
-            this.props.setUsers(res.data.items)
+        usersAPI.getUsers(currenPage, this.props.pageSize).then((data) => {
+            this.props.setUsers(data.items)
             this.props.toggleIsFetching(false)
         });
     }

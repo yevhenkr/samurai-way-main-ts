@@ -23,6 +23,13 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
         this.props.changeFollowed(id, isFollowed)
     }
 
+    follow = (id: number) => {
+        this.props.changeFollowed(id, true)
+    }
+    unfollow = (id: number) => {
+        this.props.changeFollowed(id, false)
+    }
+
     onPageChange(currenPage: number) {
         this.props.setCurrentPage(currenPage)
         this.props.toggleIsFetching(true)
@@ -44,7 +51,8 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
             {this.props.isFetching ?
                 <Preloader/> : ""
             }
-            <Users users={this.props.users} followedOnClickHandler={this.followedOnClickHandler}
+            <Users users={this.props.users} followedOnClickHandler={this.followedOnClickHandler} fallow={this.follow}
+                   unfallow={this.unfollow}
                    onPageChange={this.onPageChange} pageArray={this.pageArray}
                    currentPage={this.props.currentPage}/>
         </>

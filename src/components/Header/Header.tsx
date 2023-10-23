@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import {MapStateToPropsType} from "./HeaderContainer";
 
 function Header(props: MapStateToPropsType) {
-    debugger
     return (
         <header className={s.header}>
             <img

@@ -3,6 +3,7 @@ import s from "./users.module.css"
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import axios, {AxiosResponse} from "axios";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -10,9 +11,17 @@ type UsersPropsType = {
     currentPage: number
     users: UserType[]
     followedOnClickHandler: (id: number, isFollowed: boolean) => void
+    fallow: (id: number) => void
+    unfallow: (id: number) => void
 }
 export const Users: React.FC<UsersPropsType> = (props) => {
 
+    console.log('users', props.users)
+
+    const instance = axios.create({
+        baseURL: "https://social-network.samuraijs.com/api/1.0",
+        withCredentials: true
+    })
     return <div className={s.items}>
         <div>
             {props.pageArray.map(page => {
@@ -28,8 +37,36 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                         <img className={s.itemImg} src={user?.photos?.small ? user?.photos?.small : defaultUserIcon}
                              alt="Описание изображения"/>
                     </NavLink>
-                    <button onClick={() => props.followedOnClickHandler(user?.id, !user?.followed)}
-                            className={s.followed}>{user.followed ? "Follow" : "Unfollow"}</button>
+                    <div>{`id = ${user.id}`}</div>
+                    <div>
+                        {user.followed
+                            ? <button onClick={() => {
+
+                                instance.delete<ResponseType<{ userId: number }>, AxiosResponse<ResponseType<{
+                                    userId: number
+                                }>>>
+                                (`/follow/${user.id}`, {})
+                                    .then((res) => {
+
+                                        if (res.data.resultCode === 0) {
+                                            props.unfallow(user.id)
+                                        }
+                                    });
+                            }}>{'Unfollow'}</button>
+                            : <button onClick={() =>
+
+                                instance.post
+                                (`/follow/${user.id}`, {})
+                                    .then((res) => {
+                                        console.log(res)
+
+
+                                        if (res.data.resultCode === 0) {
+                                            props.fallow(user.id)
+                                        }
+                                    })}>{'Follow'}</button>
+                        }
+                    </div>
                 </div>
                 <div className={s.aboutUser}>
                     <div className={s.aboutUserLeft}>
@@ -44,4 +81,11 @@ export const Users: React.FC<UsersPropsType> = (props) => {
             </div>)}
         {/*<button onClick={this.getUsersFromServerOnClickHandler}>{"addUsers FromServer"}</button>*/}
     </div>
+}
+
+export type ResponseType<D = {}> = {
+    resultCode: number
+    messages: Array<string>
+    fieldsErrors: Array<string>
+    data: D
 }

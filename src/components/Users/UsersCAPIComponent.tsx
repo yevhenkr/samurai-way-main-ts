@@ -2,7 +2,7 @@ import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import Preloader from "../comman/preloader/Preloader";
-import {usersAPI} from "../API/usersAPI";
+import {api} from "../API/api";
 
 
 export class UsersCAPIComponent extends React.Component<UsersPropsType> {
@@ -12,7 +12,7 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     }
 
     componentDidMount() {
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        api.getUsers(this.props.currentPage, this.props.pageSize)
             .then((data) => {
                 debugger
                 this.props.setUsers(data.items)
@@ -35,7 +35,7 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     onPageChange(currenPage: number) {
         this.props.setCurrentPage(currenPage)
         this.props.toggleIsFetching(true)
-        usersAPI.getUsers(currenPage, this.props.pageSize).then((data) => {
+        api.getUsers(currenPage, this.props.pageSize).then((data) => {
             this.props.setUsers(data.items)
             this.props.toggleIsFetching(false)
         });

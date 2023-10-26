@@ -4,7 +4,7 @@ import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
-import {usersAPI} from "../API/usersAPI";
+import {api} from "../API/api";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -42,14 +42,14 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     <div>
                         {user.followed
                             ? <button onClick={() => {
-                                usersAPI.unFollowed(user.id).then((data) => {
+                                api.unFollowed(user.id).then((data) => {
                                     if (data.resultCode === 0) {
                                         props.unfallow(user.id)
                                     }
                                 });
                             }}>{'Unfollow'}</button>
                             : <button onClick={() =>
-                                usersAPI.followed(user.id).then((data) => {
+                                api.followed(user.id).then((data) => {
                                     if (data.resultCode === 0) {
                                         props.fallow(user.id)
                                     }

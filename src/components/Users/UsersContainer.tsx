@@ -20,7 +20,7 @@ export type UsersPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: number[]
-    toggleIsFollowingProgress: (isFollowingProgress: boolean) => void
+    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 const mapStateToPropsType = (state: AppStateType): UsersPageType => {

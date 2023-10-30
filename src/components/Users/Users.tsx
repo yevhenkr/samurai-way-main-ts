@@ -15,7 +15,7 @@ type UsersPropsType = {
     fallow: (id: number) => void
     unfallow: (id: number) => void
     followingInProgress: number[]
-    toggleIsFollowingProgress: (id: boolean) => void
+    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 export const Users: React.FC<UsersPropsType> = (props) => {
 
@@ -41,20 +41,20 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     <div>{`id = ${user.id}`}</div>
                     <div>
                         {user.followed
-                            ? <button disabled={!props.followingInProgress} onClick={() => {
-                                props.toggleIsFollowingProgress(true)
+                            ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleIsFollowingProgress(true, user.id)
                                 api.unFollowed(user.id).then((data) => {
                                     if (data.resultCode === 0) {
-                                        props.toggleIsFollowingProgress(false)
+                                        props.toggleIsFollowingProgress(false, user.id)
                                         props.unfallow(user.id)
                                     }
                                 })
                             }}>{'Unfollow'}</button>
-                            : <button disabled={!props.followingInProgress} onClick={() => {
-                                props.toggleIsFollowingProgress(true)
+                            : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleIsFollowingProgress(true, user.id)
                                 api.followed(user.id).then((data) => {
                                     if (data.resultCode === 0) {
-                                        props.toggleIsFollowingProgress(false)
+                                        props.toggleIsFollowingProgress(false, user.id)
                                         props.fallow(user.id)
                                     }
                                 })

@@ -14,10 +14,10 @@ type UsersPropsType = {
     followedOnClickHandler: (id: number, isFollowed: boolean) => void
     fallow: (id: number) => void
     unfallow: (id: number) => void
+    followingInProgress: number[]
+    toggleIsFollowingProgress: (id: boolean) => void
 }
 export const Users: React.FC<UsersPropsType> = (props) => {
-
-    console.log('users', props.users)
 
     const instance = axios.create({
         baseURL: "https://social-network.samuraijs.com/api/1.0",
@@ -41,19 +41,24 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     <div>{`id = ${user.id}`}</div>
                     <div>
                         {user.followed
-                            ? <button onClick={() => {
+                            ? <button disabled={!props.followingInProgress} onClick={() => {
+                                props.toggleIsFollowingProgress(true)
                                 api.unFollowed(user.id).then((data) => {
                                     if (data.resultCode === 0) {
+                                        props.toggleIsFollowingProgress(false)
                                         props.unfallow(user.id)
                                     }
-                                });
+                                })
                             }}>{'Unfollow'}</button>
-                            : <button onClick={() =>
+                            : <button disabled={!props.followingInProgress} onClick={() => {
+                                props.toggleIsFollowingProgress(true)
                                 api.followed(user.id).then((data) => {
                                     if (data.resultCode === 0) {
+                                        props.toggleIsFollowingProgress(false)
                                         props.fallow(user.id)
                                     }
-                                })}>{'Follow'}</button>
+                                })
+                            }}>{'Follow'}</button>
                         }
                     </div>
                 </div>

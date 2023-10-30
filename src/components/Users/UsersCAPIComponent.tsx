@@ -14,7 +14,6 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
         api.getUsers(this.props.currentPage, this.props.pageSize)
             .then((data) => {
-                debugger
                 this.props.setUsers(data.items)
                 this.props.setTotalUserCount(data.totalCount)
                 this.props.toggleIsFetching(false)
@@ -56,7 +55,8 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
             <Users users={this.props.users} followedOnClickHandler={this.followedOnClickHandler} fallow={this.follow}
                    unfallow={this.unfollow}
                    onPageChange={this.onPageChange} pageArray={this.pageArray}
-                   currentPage={this.props.currentPage}/>
+                   currentPage={this.props.currentPage} followingInProgress={this.props.followingInProgress}
+                   toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}/>
         </>
     }
 }

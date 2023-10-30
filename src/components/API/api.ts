@@ -13,6 +13,7 @@ export const api = {
             })
     },
     unFollowed(id: number) {
+
         return instance.delete(`/follow/${id}`).then((res) => {
             return res.data
         })

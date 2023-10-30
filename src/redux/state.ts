@@ -2,17 +2,20 @@ import {v1} from 'uuid';
 import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-reducer";
 import {addPostAC, changeNewPostAC, profilePageReducer, ProfilePageType, setUserProfile} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
-import {changeFollowed, setCurrentPage, setTotalUserCount, setUsers, toggleIsFetching} from "./users-reducer";
+import {
+    changeFollowed,
+    setCurrentPage,
+    setTotalUserCount,
+    setUsers,
+    toggleIsFetching,
+    toggleIsFollowingProgress
+} from "./users-reducer";
 import {setAuthMe} from "./auth-reducer";
 
 type PotsType = {
     message: string,
     id: string
 }
-// type ProfilePageType = {
-//     posts: PotsType[]
-//     newPost: string
-// }
 
 type DialogsType = {
     name: string,
@@ -85,7 +88,7 @@ export type ActionType =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthMe>
-    ;
+    | ReturnType<typeof toggleIsFollowingProgress>
 
 export let store: StoreType = {
     _state: {

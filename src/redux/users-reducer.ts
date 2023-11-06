@@ -1,6 +1,4 @@
 import {ActionType} from "./state";
-import {Dispatch} from "redux";
-import {api} from "../components/API/api";
 
 export type  UsersPageType = {
     users: UserType[]
@@ -110,17 +108,5 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             }
         default:
             return state
-    }
-}
-
-export const getUsersThunkCreator = (currentPage:number,pageSize:number) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleIsFetching(true))
-        api.getUsers(currentPage, pageSize)
-            .then((data) => {
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUserCount(data.totalCount))
-                dispatch(toggleIsFetching(false))
-            });
     }
 }

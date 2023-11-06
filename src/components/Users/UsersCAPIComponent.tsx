@@ -3,7 +3,6 @@ import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import Preloader from "../comman/preloader/Preloader";
 import {api} from "../API/api";
-import {getUsersThunkCreator} from "../../redux/users-reducer";
 
 
 export class UsersCAPIComponent extends React.Component<UsersPropsType> {
@@ -13,12 +12,18 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     }
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        api.getUsers(this.props.currentPage, this.props.pageSize)
+            .then((data) => {
+                this.props.setUsers(data.items)
+                this.props.setTotalUserCount(data.totalCount)
+                this.props.toggleIsFetching(false)
+            });
     }
 
     followedOnClickHandler = (id: number, isFollowed: boolean) => {
         this.props.changeFollowed(id, isFollowed)
     }
+
     follow = (id: number) => {
         this.props.changeFollowed(id, true)
     }
@@ -27,14 +32,12 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     }
 
     onPageChange(currenPage: number) {
-        this.props.getUsers(currenPage, this.props.pageSize)
-        //
-        // this.props.setCurrentPage(currenPage)
-        // this.props.toggleIsFetching(true)
-        // api.getUsers(currenPage, this.props.pageSize).then((data) => {
-        //     this.props.setUsers(data.items)
-        //     this.props.toggleIsFetching(false)
-        // });
+        this.props.setCurrentPage(currenPage)
+        this.props.toggleIsFetching(true)
+        api.getUsers(currenPage, this.props.pageSize).then((data) => {
+            this.props.setUsers(data.items)
+            this.props.toggleIsFetching(false)
+        });
     }
 
     pageCount: number = Math.ceil(this.props.totalUserCount / this.props.pageSize)

@@ -3,12 +3,12 @@ import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-
 import {addPostAC, changeNewPostAC, profilePageReducer, ProfilePageType, setUserProfile} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {
-    changeFollowed,
+    followSuccess,
     setCurrentPage,
     setTotalUserCount,
     setUsers,
     toggleIsFetching,
-    toggleIsFollowingProgress
+    toggleIsFollowingProgress, unfollowSuccess
 } from "./users-reducer";
 import {setAuthMe} from "./auth-reducer";
 
@@ -81,7 +81,6 @@ export type ActionType =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof changeNewMessage>
     | ReturnType<typeof addMessage>
-    | ReturnType<typeof changeFollowed>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUserCount>
     | ReturnType<typeof setUsers>
@@ -89,6 +88,8 @@ export type ActionType =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthMe>
     | ReturnType<typeof toggleIsFollowingProgress>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
 
 export let store: StoreType = {
     _state: {

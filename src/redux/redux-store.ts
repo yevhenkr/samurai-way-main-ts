@@ -1,10 +1,10 @@
-import {combineReducers, createStore, Store} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {profilePageReducer} from "./profile-page-reducer";
 import {messagePageReducer} from "./messages-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {usersReducer} from "./users-reducer";
-import {StoreType} from "./state";
 import {authReducer} from "./auth-reducer";
+import thunk from "redux-thunk";
 
 let rootReducer = combineReducers({
     profilePage: profilePageReducer,
@@ -16,8 +16,10 @@ let rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export const store: Store<StoreType> = createStore(rootReducer);
-export type AppDispatch = typeof store.dispatch
+export const store = createStore(rootReducer, applyMiddleware(thunk));
+
+// export type AppThunkDispatch = ThunkDispatch<AppStateType, any, AnyAction>
+// export type useAppDispatch =  () => useDispatch<AppThunkDispatch>();
 
 //for vosability
 declare global {

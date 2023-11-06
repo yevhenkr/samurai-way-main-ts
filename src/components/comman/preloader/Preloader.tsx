@@ -3,7 +3,7 @@ import React from "react";
 
 const Preloader = () => {
     return (
-        <img src={preloader}/>
+        <img src={preloader} alt={"no img"}/>
     )
 }
 

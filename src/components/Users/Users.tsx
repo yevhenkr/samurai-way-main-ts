@@ -1,10 +1,9 @@
 import React from "react";
 import s from "./users.module.css"
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
-import {UserType} from "../../redux/users-reducer";
+import {follow, unfollow, UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {api} from "../API/api";
+import {useDispatch} from "react-redux";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -13,16 +12,12 @@ type UsersPropsType = {
     users: UserType[]
     followedOnClickHandler: (id: number, isFollowed: boolean) => void
     fallow: (id: number) => void
-    unfallow: (id: number) => void
+    unfollow: (id: number) => void
     followingInProgress: number[]
-    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 export const Users: React.FC<UsersPropsType> = (props) => {
+    const dispatch = useDispatch<any>()
 
-    const instance = axios.create({
-        baseURL: "https://social-network.samuraijs.com/api/1.0",
-        withCredentials: true
-    })
     return <div className={s.items}>
         <div>
             {props.pageArray.map(page => {
@@ -42,22 +37,10 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     <div>
                         {user.followed
                             ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, user.id)
-                                api.unFollowed(user.id).then((data) => {
-                                    if (data.resultCode === 0) {
-                                        props.toggleIsFollowingProgress(false, user.id)
-                                        props.unfallow(user.id)
-                                    }
-                                })
+                                dispatch(unfollow(user.id))
                             }}>{'Unfollow'}</button>
                             : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, user.id)
-                                api.followed(user.id).then((data) => {
-                                    if (data.resultCode === 0) {
-                                        props.toggleIsFollowingProgress(false, user.id)
-                                        props.fallow(user.id)
-                                    }
-                                })
+                                dispatch(follow(user.id))
                             }}>{'Follow'}</button>
                         }
                     </div>
@@ -73,7 +56,6 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     </div>
                 </div>
             </div>)}
-        {/*<button onClick={this.getUsersFromServerOnClickHandler}>{"addUsers FromServer"}</button>*/}
     </div>
 }
 

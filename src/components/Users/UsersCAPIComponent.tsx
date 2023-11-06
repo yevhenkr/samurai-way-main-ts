@@ -2,8 +2,6 @@ import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import Preloader from "../comman/preloader/Preloader";
-import {api} from "../API/api";
-
 
 export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     constructor(props: UsersPropsType) {
@@ -12,32 +10,19 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
     }
 
     componentDidMount() {
-        api.getUsers(this.props.currentPage, this.props.pageSize)
-            .then((data) => {
-                this.props.setUsers(data.items)
-                this.props.setTotalUserCount(data.totalCount)
-                this.props.toggleIsFetching(false)
-            });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
-
     followedOnClickHandler = (id: number, isFollowed: boolean) => {
-        this.props.changeFollowed(id, isFollowed)
+        this.props.follow(id)
     }
-
     follow = (id: number) => {
-        this.props.changeFollowed(id, true)
+        this.props.follow(id)
     }
     unfollow = (id: number) => {
-        this.props.changeFollowed(id, false)
+        this.props.unfollow(id)
     }
-
     onPageChange(currenPage: number) {
-        this.props.setCurrentPage(currenPage)
-        this.props.toggleIsFetching(true)
-        api.getUsers(currenPage, this.props.pageSize).then((data) => {
-            this.props.setUsers(data.items)
-            this.props.toggleIsFetching(false)
-        });
+        this.props.getUsers(currenPage, this.props.pageSize)
     }
 
     pageCount: number = Math.ceil(this.props.totalUserCount / this.props.pageSize)
@@ -53,10 +38,9 @@ export class UsersCAPIComponent extends React.Component<UsersPropsType> {
                 <Preloader/> : ""
             }
             <Users users={this.props.users} followedOnClickHandler={this.followedOnClickHandler} fallow={this.follow}
-                   unfallow={this.unfollow}
+                   unfollow={this.unfollow}
                    onPageChange={this.onPageChange} pageArray={this.pageArray}
-                   currentPage={this.props.currentPage} followingInProgress={this.props.followingInProgress}
-                   toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}/>
+                   currentPage={this.props.currentPage} followingInProgress={this.props.followingInProgress}/>
         </>
     }
 }

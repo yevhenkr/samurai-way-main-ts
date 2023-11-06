@@ -1,4 +1,6 @@
 import {ActionType} from "./state";
+import {Dispatch} from "redux";
+import {usersApi} from "../components/API/usersApi";
 
 export type  UsersPageType = {
     users: UserType[]
@@ -22,26 +24,6 @@ export type UserType = {
     status: string,
     location: LocationType
     photos: PhotoType
-}
-
-export const changeFollowed = (id: number, isFollowed: boolean) => {
-    return {type: "CHANGE-FOLLOWED", id, isFollowed} as const
-}
-
-export const setUsers = (users: UserType[]): { type: "SET-USERS"; users: UserType[] } => {
-    return {type: "SET-USERS", users} as const
-}
-export const setCurrentPage = (currentPage: number) => {
-    return {type: "SET-CURRENT-PAGE", currentPage} as const
-}
-export const setTotalUserCount = (count: number) => {
-    return {type: "SET-TOTAL-USER-COUNT", count} as const
-}
-export const toggleIsFetching = (isFetching: boolean) => {
-    return {type: "TOGGLE-IS-FETCHING", isFetching} as const
-}
-export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) => {
-    return {type: "TOGGLE-IS-FOLLOWING-PROGRESS", isFetching, userId} as const
 }
 
 const initialState: UsersPageType = {
@@ -77,10 +59,16 @@ const initialState: UsersPageType = {
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
     switch (action.type) {
-        case "CHANGE-FOLLOWED":
+        case "UNFOLLOW":
             return {
                 ...state, users: [...state.users.map(user => user.id === action.id
-                    ? {...user, followed: action.isFollowed}
+                    ? {...user, followed: false}
+                    : user)]
+            }
+        case "FOLLOW":
+            return {
+                ...state, users: [...state.users.map(user => user.id === action.id
+                    ? {...user, followed: true}
                     : user)]
             }
         case "SET-USERS":
@@ -104,9 +92,66 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : [...state.followingInProgress.filter(id => id != action.userId)]
+                    : [...state.followingInProgress.filter(id => id !== action.userId)]
             }
         default:
             return state
+    }
+}
+
+export const followSuccess = (id: number) => {
+    return {type: "FOLLOW", id} as const
+}
+export const unfollowSuccess = (id: number) => {
+    return {type: "UNFOLLOW", id} as const
+}
+export const setUsers = (users: UserType[]): { type: "SET-USERS"; users: UserType[] } => {
+    return {type: "SET-USERS", users} as const
+}
+export const setCurrentPage = (currentPage: number) => {
+    return {type: "SET-CURRENT-PAGE", currentPage} as const
+}
+export const setTotalUserCount = (count: number) => {
+    return {type: "SET-TOTAL-USER-COUNT", count} as const
+}
+export const toggleIsFetching = (isFetching: boolean) => {
+    return {type: "TOGGLE-IS-FETCHING", isFetching} as const
+}
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) => {
+    return {type: "TOGGLE-IS-FOLLOWING-PROGRESS", isFetching, userId} as const
+}
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetching(true))
+
+        usersApi.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUserCount(data.totalCount))
+            dispatch(toggleIsFetching(false))
+        });
+    }
+}
+export const unfollow = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId))
+        usersApi.unFollowed(userId).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+                dispatch(toggleIsFollowingProgress(false, userId))
+            }
+        })
+    }
+}
+export const follow = (userId: number) => {
+
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId))
+        usersApi.followed(userId).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+                dispatch(toggleIsFollowingProgress(false, userId))
+            }
+        })
     }
 }

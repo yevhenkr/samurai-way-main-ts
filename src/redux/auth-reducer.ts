@@ -1,4 +1,6 @@
 import {ActionType} from "./state";
+import {Dispatch} from "redux";
+import {authAPI} from "../components/API/api";
 
 export type AuthType = {
     "id": number,
@@ -28,4 +30,14 @@ export const authReducer = (state: AuthType = initialState, action: ActionType):
         default:
             return state
     }
+}
+export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
+    authAPI.me()
+        .then(response => {
+                if (response.data.resultCode === 0) {
+                    let {id, email, login} = response.data.data
+                    dispatch(setAuthMe(id, email, login))
+                }
+            }
+        )
 }

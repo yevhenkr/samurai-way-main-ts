@@ -5,15 +5,18 @@ const instance = axios.create({
     withCredentials: true
 })
 
-export const usersApi = {
+export const api = {
     getUsers(currentPage: number, pageSize = 10) {
         return instance.get(`/users?page=${currentPage}&count${pageSize}`).then(
             (res) => {
                 return res.data
             })
     },
-    unFollowed(id: number) {
-        return instance.delete(`/follow/${id}`).then((res) => {
+    getProfile(userId: string) {
+        return instance.get(`/profile/${userId}`);
+    },
+    unFollowed(userId: number) {
+        return instance.delete(`/follow/${userId}`).then((res) => {
             return res.data
         })
     },
@@ -22,4 +25,9 @@ export const usersApi = {
             return res.data
         })
     },
+}
+export const authAPI = {
+    me() {
+        return instance.get(`/auth/me`)
+    }
 }

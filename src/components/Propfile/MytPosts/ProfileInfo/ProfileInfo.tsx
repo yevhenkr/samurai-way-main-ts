@@ -13,7 +13,6 @@ function ProfileInfo(props: ProfilePropsType) {
                 <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>
             </div>
             <div className={s.descriptionBlock}>
-                {/*<img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>*/}
                 <img src={props.profile.photos.large}/>
                 <div>{"Github : " + props.profile.contacts.github}</div>
                 <div>{"Twitter : " + props.profile.contacts.twitter}</div>

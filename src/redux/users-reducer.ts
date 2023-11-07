@@ -1,6 +1,6 @@
 import {ActionType} from "./state";
 import {Dispatch} from "redux";
-import {usersApi} from "../components/API/usersApi";
+import {api} from "../components/API/api";
 
 export type  UsersPageType = {
     users: UserType[]
@@ -125,7 +125,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
 
-        usersApi.getUsers(currentPage, pageSize).then((data) => {
+        api.getUsers(currentPage, pageSize).then((data) => {
             dispatch(setUsers(data.items))
             dispatch(setTotalUserCount(data.totalCount))
             dispatch(toggleIsFetching(false))
@@ -135,7 +135,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 export const unfollow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFollowingProgress(true, userId))
-        usersApi.unFollowed(userId).then((data) => {
+        api.unFollowed(userId).then((data) => {
             if (data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId))
                 dispatch(toggleIsFollowingProgress(false, userId))
@@ -147,7 +147,7 @@ export const follow = (userId: number) => {
 
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFollowingProgress(true, userId))
-        usersApi.followed(userId).then((data) => {
+        api.followed(userId).then((data) => {
             if (data.resultCode === 0) {
                 dispatch(followSuccess(userId))
                 dispatch(toggleIsFollowingProgress(false, userId))

@@ -1,6 +1,12 @@
 import {v1} from 'uuid';
 import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-reducer";
-import {addPostAC, changeNewPostAC, profilePageReducer, ProfilePageType, setUserProfile} from "./profile-page-reducer";
+import {
+    addPostAC,
+    changeNewPostAC,
+    profilePageReducer,
+    ProfilePageType,
+    setUserProfile
+} from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {
     followSuccess,

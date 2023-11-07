@@ -1,5 +1,7 @@
 import {ActionType, ProfileObject} from "./state";
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {api} from "../components/API/api";
 
 export type PotsType = {
     message: string,
@@ -10,17 +12,6 @@ export type ProfilePageType = {
     newPost: string
     profile: ProfileObject
 }
-
-export const changeNewPostAC = (newText: string) => {
-    return {type: "CHANGE-NEW-POST", newText: newText} as const
-}
-export const addPostAC = (postText: string) => {
-    return {type: "ADD-POST", postText: postText} as const
-}
-export const setUserProfile = (profile: any) => {
-    return {type: "SET-USER-PROFILE", profile} as const
-}
-
 
 const initialState: ProfilePageType = {
     posts: [
@@ -70,4 +61,20 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
         default:
             return state
     }
+}
+
+export const changeNewPostAC = (newText: string) => {
+    return {type: "CHANGE-NEW-POST", newText: newText} as const
+}
+export const addPostAC = (postText: string) => {
+    return {type: "ADD-POST", postText: postText} as const
+}
+export const setUserProfile = (profile: any) => {
+    return {type: "SET-USER-PROFILE", profile} as const
+}
+
+export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
+    api.getProfile(userId).then((res) => {
+        dispatch(setUserProfile(res.data))
+    });
 }

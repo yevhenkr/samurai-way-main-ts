@@ -2,12 +2,11 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/Nav/Navbar';
 import {Route} from 'react-router-dom';
-
-
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Propfile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {Login} from "./components/Login/Lodin";
 
 export const App = () => {
     return (
@@ -21,6 +20,8 @@ export const App = () => {
                        render={() => <DialogsContainer/>}/>
                 <Route path={'/users'}
                        render={() => <UsersContainer/>}/>
+                <Route path={'/login'}
+                       render={() => <Login/>}/>
                 {/*    <Page pages={dataState.pages}/>}/>*/}
                 {/*<Route path={'/*'} element={<Error404/>}/>*/}
             </div>

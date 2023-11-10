@@ -9,7 +9,7 @@ export type AuthType = {
     isAuth: boolean
 }
 
-export const setAuthMe = (id: number, login: string, email: string) => {
+export const setAuthUserData = (id: number, login: string, email: string) => {
     return {type: "SET-USER-DATA" as const, data: {id, login, email}}
 }
 
@@ -36,7 +36,7 @@ export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
         .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data
-                    dispatch(setAuthMe(id, email, login))
+                    dispatch(setAuthUserData(id, email, login))
                 }
             }
         )

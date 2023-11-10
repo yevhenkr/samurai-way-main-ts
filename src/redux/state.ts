@@ -16,7 +16,7 @@ import {
     toggleIsFetching,
     toggleIsFollowingProgress, unfollowSuccess
 } from "./users-reducer";
-import {setAuthMe} from "./auth-reducer";
+import {setAuthUserData} from "./auth-reducer";
 
 type PotsType = {
     message: string,
@@ -92,7 +92,7 @@ export type ActionType =
     | ReturnType<typeof setUsers>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthMe>
+    | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof toggleIsFollowingProgress>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>

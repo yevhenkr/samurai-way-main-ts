@@ -9,7 +9,7 @@ export type MapStateToPropsType = {
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
-    authMeThunkCreator: () => void
+    getAuthUserDataThunkCreator: () => void
 }
 
 type PropsType = MapDispatchToPropsType & MapStateToPropsType
@@ -17,7 +17,7 @@ type PropsType = MapDispatchToPropsType & MapStateToPropsType
 
 class HeaderContainer extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.authMeThunkCreator()
+        this.props.getAuthUserDataThunkCreator()
     }
 
     render() {
@@ -30,5 +30,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth
 })
 
-
-export default connect(mapStateToProps, {authMeThunkCreator: getAuthUserDataThunkCreator})(HeaderContainer)
+export default connect(mapStateToProps, {getAuthUserDataThunkCreator: getAuthUserDataThunkCreator})(HeaderContainer)

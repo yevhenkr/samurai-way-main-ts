@@ -12,6 +12,9 @@ import {
     UsersPageType,
     UserType,
 } from "../../redux/users-reducer";
+import {compose} from "redux";
+import {FC} from "react";
+import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 export type UsersPropsType = {
     follow: (id: number) => void,
@@ -40,7 +43,7 @@ const mapStateToPropsType = (state: AppStateType): UsersPageType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToPropsType,
+export const UsersContainer = compose<FC>(connect(mapStateToPropsType,
     {
         follow: followSuccess,
         unfollow: unfollowSuccess,
@@ -50,4 +53,4 @@ export const UsersContainer = connect(mapStateToPropsType,
         toggleIsFollowingProgress,
         toggleIsFetching,
         getUsers:getUsersThunkCreator
-    })(UsersCAPIComponent)
+    }),withAuthRedirect)(UsersCAPIComponent)

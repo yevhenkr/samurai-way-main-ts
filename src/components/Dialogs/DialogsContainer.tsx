@@ -10,7 +10,6 @@ import {AppStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../HOC/withAuthRedirect";
 import {compose} from "redux";
 
-
 type MapStateToPropsType = {
     dialogs: DialogsType[]
     messages: MessageType []

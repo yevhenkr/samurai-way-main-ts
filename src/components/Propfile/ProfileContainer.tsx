@@ -6,7 +6,6 @@ import {AppStateType} from "../../redux/redux-store";
 import {ProfileObject, ProfileObjectPhotos} from "../../redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 type MapStateToPropsType = {
     profile: ProfileObject
@@ -41,5 +40,5 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 })
 export default compose<React.FC>(
     connect(mapStateToProps, {getUserProfileThunkCreator}), withRouter,
-    withAuthRedirect
+    // withAuthRedirect
 )(ProfileContainer)

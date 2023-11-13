@@ -41,7 +41,8 @@ export type DialogPropsType = MapStateToPropsType & MapDispatchPropsType
 //     }
 // }
 
-export const DialogsContainer = compose<FC>(connect(mapStateToProps, {
+export const DialogsContainer = compose<FC>(
+    connect(mapStateToProps, {
     changeNewMessage,
     addMessage
 }), withAuthRedirect)(Dialogs)

@@ -17,7 +17,6 @@ type UsersPropsType = {
 }
 export const Users: React.FC<UsersPropsType> = (props) => {
     const dispatch = useDispatch<any>()
-
     return <div className={s.items}>
         <div>
             {props.pageArray.map(page => {

@@ -13,7 +13,7 @@ export const api = {
             })
     },
     getProfile(userId: string) {
-        return instance.get(`/profile/${userId}`);
+        return profileAPI.getProfile(userId)
     },
     unFollowed(userId: number) {
         return instance.delete(`/follow/${userId}`).then((res) => {
@@ -25,6 +25,18 @@ export const api = {
             return res.data
         })
     },
+}
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instance.get(`/profile/${userId}`);
+    },
+    getStatus(userId: string) {
+        return instance.get(`/profile/status/${userId}`);
+    },
+    putStatus(status: string) {
+        return instance.put(`/profile/status`, {status: status});
+    },
+
 }
 export const authAPI = {
     me() {

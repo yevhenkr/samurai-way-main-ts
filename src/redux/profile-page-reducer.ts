@@ -1,7 +1,7 @@
 import {ActionType, ProfileObject} from "./state";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {api} from "../components/API/api";
+import {api, profileAPI} from "../components/API/api";
 
 export type PotsType = {
     message: string,
@@ -11,6 +11,7 @@ export type ProfilePageType = {
     posts: PotsType[]
     newPost: string
     profile: ProfileObject
+    status: string;
 }
 
 const initialState: ProfilePageType = {
@@ -37,7 +38,8 @@ const initialState: ProfilePageType = {
             small: '',
             large: '',
         },
-    }
+    },
+    status: ""
 }
 
 export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
@@ -58,6 +60,11 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
                 ...state,
                 profile: action.profile
             }
+        case "SET-STATUS":
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
@@ -72,9 +79,25 @@ export const addPostAC = (postText: string) => {
 export const setUserProfile = (profile: any) => {
     return {type: "SET-USER-PROFILE", profile} as const
 }
+export const setStatus = (status: string) => {
+    return {type: "SET-STATUS", status} as const
+}
 
 export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
     api.getProfile(userId).then((res) => {
         dispatch(setUserProfile(res.data))
+    });
+}
+export const getUserStatusThunkCreator = (userId: string) => (dispatch: Dispatch) => {
+    profileAPI.getStatus(userId).then((res) => {
+        dispatch(setStatus(res.data))
+    });
+}
+export const updateStatusThunkCreator = (status: string) => (dispatch: Dispatch) => {
+
+    profileAPI.putStatus(status).then((res) => {
+        if (res.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
     });
 }

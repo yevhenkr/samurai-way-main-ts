@@ -4,7 +4,7 @@ import {
     addPostAC,
     changeNewPostAC,
     profilePageReducer,
-    ProfilePageType,
+    ProfilePageType, setStatus,
     setUserProfile
 } from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
@@ -96,6 +96,7 @@ export type ActionType =
     | ReturnType<typeof toggleIsFollowingProgress>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
+    | ReturnType<typeof setStatus>
 
 export let store: StoreType = {
     _state: {
@@ -123,7 +124,8 @@ export let store: StoreType = {
                     small: '',
                     large: '',
                 },
-            }
+            },
+            status: ""
         },
         messagesPage: {
             dialogs: [

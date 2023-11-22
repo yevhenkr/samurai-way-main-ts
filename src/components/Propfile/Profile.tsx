@@ -10,6 +10,7 @@ export type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
+
     return (
         <div>
             <Profileinfo profile={props.profile} status={props.status}

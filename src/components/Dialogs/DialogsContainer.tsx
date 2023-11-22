@@ -14,12 +14,16 @@ type MapStateToPropsType = {
     dialogs: DialogsType[]
     messages: MessageType []
     newMessage: string
+    isAuth: boolean
 }
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    console.log(state)
     return {
         dialogs: state.messagesPage.dialogs,
         messages: state.messagesPage.messages,
         newMessage: state.messagesPage.newMessage,
+        isAuth: state.auth.isAuth
+
     };
 }
 
@@ -30,19 +34,8 @@ type MapDispatchPropsType = {
 
 export type DialogPropsType = MapStateToPropsType & MapDispatchPropsType
 
-// const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchPropsType => {
-//     return {
-//         changeTextField: (newMessage: string) => {
-//             dispatch(changeNewMessage(newMessage))
-//         },
-//         clickOnAddMessage: () => {
-//             dispatch(addMessage())
-//         },
-//     }
-// }
-
 export const DialogsContainer = compose<FC>(
     connect(mapStateToProps, {
-    changeNewMessage,
-    addMessage
-}), withAuthRedirect)(Dialogs)
+        changeNewMessage,
+        addMessage
+    }), withAuthRedirect)(Dialogs)

@@ -4,6 +4,7 @@ import {ProfilePropsType} from "../../Profile";
 import ProfileStatus from "./ProfileStatus";
 
 function ProfileInfo(props: ProfilePropsType) {
+
     return (
         <>
             <div>

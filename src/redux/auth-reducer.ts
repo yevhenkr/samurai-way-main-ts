@@ -9,10 +9,6 @@ export type AuthType = {
     isAuth: boolean
 }
 
-export const setAuthUserData = (id: number, login: string, email: string) => {
-    return {type: "SET-USER-DATA" as const, data: {id, login, email}}
-}
-
 const initialState: AuthType = {
     id: 0,
     login: "-",
@@ -31,7 +27,12 @@ export const authReducer = (state: AuthType = initialState, action: ActionType):
             return state
     }
 }
-export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
+
+export const setAuthUserData = (id: number, login: string, email: string) => {
+    return {type: "SET-USER-DATA" as const, data: {id, login, email}}
+}
+
+export const getAuthUserData = () => (dispatch: Dispatch) => {
     authAPI.me()
         .then(response => {
                 if (response.data.resultCode === 0) {

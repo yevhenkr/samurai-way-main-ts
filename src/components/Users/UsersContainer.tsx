@@ -14,7 +14,7 @@ import {
 } from "../../redux/users-reducer";
 import {compose} from "redux";
 import {FC} from "react";
-import {withAuthRedirect} from "../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export type UsersPropsType = {
     follow: (id: number) => void,

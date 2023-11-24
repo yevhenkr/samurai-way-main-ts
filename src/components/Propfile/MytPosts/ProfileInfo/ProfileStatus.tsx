@@ -6,6 +6,7 @@ type ProfileStatusType = {
 }
 
 class ProfileStatus extends React.Component<ProfileStatusType> {
+    
     state = {
         editMode: false,
         status: this.props.status
@@ -22,7 +23,7 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
         })
         this.props.updateStatus(this.state.status)
     }
-    
+
     onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             status: e.currentTarget.value

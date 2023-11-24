@@ -1,4 +1,3 @@
-import Navbar from '../Nav/Navbar';
 import {FriendType} from '../../redux/state';
 import React from 'react';
 import s from './Friends.module.css'

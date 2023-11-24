@@ -8,11 +8,11 @@ function ProfileInfo(props: ProfilePropsType) {
     return (
         <>
             <div>
-                <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'}/>
+                <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'} alt={"no img"}/>
                 <ProfileStatus status={props.status} updateStatus={props.updateStatusThunkCreator}/>
             </div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.large} alt={"no img"}/>
                 <div>{"Github : " + props.profile.contacts.github}</div>
                 <div>{"Twitter : " + props.profile.contacts.twitter}</div>
                 <div>{"Instagram : " + props.profile.contacts.instagram}</div>

@@ -20,7 +20,7 @@ console.log(isAuth)
             return <Redirect to='/login'/>
         }
         // @ts-ignore
-        return <Component {...props as T}/>
+        return <Component {...restProps as T}/>
     }
 
     let ConnectedRedirectComponent = connect(mapStateToProps)(RedirectComponent)

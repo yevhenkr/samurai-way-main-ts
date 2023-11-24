@@ -5,7 +5,6 @@ import s from './Dialogs.module.css'
 import TextFild from "../TextFieldArea/TextFieldArea";
 import SimpleButton from "../SimpleButton/SimpleButton";
 import {DialogPropsType} from "./DialogsContainer";
-import {Redirect} from "react-router-dom";
 
 export const Dialogs = (props: DialogPropsType) => {
 
@@ -15,9 +14,7 @@ export const Dialogs = (props: DialogPropsType) => {
     const clickOnAddMessage = () => {
         props.addMessage()
     }
-    if (!props.isAuth) {
-        return <Redirect to={'/login'}/>
-    }
+
 
     return <div className={s.dialogues}>
         <div className={s.dialoguesItems}>

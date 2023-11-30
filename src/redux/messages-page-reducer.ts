@@ -4,7 +4,6 @@ import {v1} from "uuid";
 export type DialogPageType = {
     dialogs: DialogsType[]
     messages: MessageType[]
-    newMessage: string
 }
 export type DialogsType = {
     name: string,
@@ -15,11 +14,8 @@ export type MessageType = {
     id: string
 }
 
-export const changeNewMessage = (newMessage: string) => {
-    return {type: "CHANGE-NEW-MESSAGE", newMessage} as const
-}
-export const addMessage = () => {
-    return {type: "ADD-MESSAGE", id: v1()} as const
+export const addMessage = (newMessageBody: string) => {
+    return {type: "ADD-MESSAGE", id: v1(), newMessageBody} as const
 }
 
 const initialState: DialogPageType = {
@@ -35,21 +31,15 @@ const initialState: DialogPageType = {
         {text: '- How are you itika', id: v1()},
         {text: '- You', id: v1()}
     ] as MessageType[],
-    newMessage: ""
 }
 
 export const messagePageReducer = (state: DialogPageType = initialState, action: ActionType): DialogPageType => {
     switch (action.type) {
-        case 'CHANGE-NEW-MESSAGE':
-            return {
-                ...state,
-                newMessage: action.newMessage
-            }
         case "ADD-MESSAGE":
             return {
                 ...state,
-                messages: [...state.messages, {text: state.newMessage, id: action.id}],
-                newMessage: ""
+                messages: [...state.messages, {text: action.newMessageBody, id: action.id}],
+                // newMessage: action.newMessageBody
             }
         default:
             return state

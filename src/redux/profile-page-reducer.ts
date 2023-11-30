@@ -9,7 +9,6 @@ export type PotsType = {
 }
 export type ProfilePageType = {
     posts: PotsType[]
-    newPost: string
     profile: ProfileObject
     status: string;
 }
@@ -20,7 +19,6 @@ const initialState: ProfilePageType = {
         {message: 'Ivan', id: v1()},
         {message: 'Sergei', id: v1()},
     ] as PotsType[],
-    newPost: 'it-camasutra',
     profile: {
         aboutMe: '',
         contacts: {
@@ -44,16 +42,10 @@ const initialState: ProfilePageType = {
 
 export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
     switch (action.type) {
-        case 'CHANGE-NEW-POST':
-            return {
-                ...state,
-                newPost: action.newText
-            }
         case "ADD-POST":
             return {
                 ...state,
                 posts: [...state.posts, {message: action.postText, id: v1()}],
-                newPost: ""
             }
         case "SET-USER-PROFILE":
             return {

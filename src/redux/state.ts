@@ -1,10 +1,11 @@
 import {v1} from 'uuid';
-import {addMessage, changeNewMessage, messagePageReducer} from "./messages-page-reducer";
+import {addMessage} from "./messages-page-reducer";
 import {
     addPostAC,
     changeNewPostAC,
     profilePageReducer,
-    ProfilePageType, setStatus,
+    ProfilePageType,
+    setStatus,
     setUserProfile
 } from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
@@ -14,7 +15,8 @@ import {
     setTotalUserCount,
     setUsers,
     toggleIsFetching,
-    toggleIsFollowingProgress, unfollowSuccess
+    toggleIsFollowingProgress,
+    unfollowSuccess
 } from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
 
@@ -85,7 +87,6 @@ export type ProfileObjectPhotos = {
 export type ActionType =
     ReturnType<typeof changeNewPostAC>
     | ReturnType<typeof addPostAC>
-    | ReturnType<typeof changeNewMessage>
     | ReturnType<typeof addMessage>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUserCount>
@@ -106,7 +107,6 @@ export let store: StoreType = {
                 {message: 'Ivan', id: v1()},
                 {message: 'Sergei', id: v1()},
             ] as PotsType[],
-            newPost: 'it-camasutra',
             profile: {
                 aboutMe: '',
                 contacts: {
@@ -163,7 +163,6 @@ export let store: StoreType = {
     },
     dispatch(action: ActionType) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action);
-        this._state.messagesPage = messagePageReducer(this._state.messagesPage, action);
         this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
         this._callSubscriber()

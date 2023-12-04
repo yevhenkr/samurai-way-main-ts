@@ -4,6 +4,8 @@ import {Messages} from './Messages/Messages';
 import s from './Dialogs.module.css'
 import {DialogPropsType} from "./DialogsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Textarea} from "../comman/FormsControls/FormsControls";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 
 export const Dialogs = (props: DialogPropsType) => {
 
@@ -30,10 +32,11 @@ export const Dialogs = (props: DialogPropsType) => {
 type FormDataType = {
     newMessageBody: string,
 }
-
+const maxLength100 = maxLengthCreator(100)
 let AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return <form onSubmit={props.handleSubmit}>
-        <Field component="textarea" name="newMessageBody" placeholder="Enter your Message"/>
+        <Field component={Textarea} name="newMessageBody" placeholder="Enter your Message"
+               validate={[requiredField, maxLength100]}/>
         <button>AddMessage</button>
     </form>
 }

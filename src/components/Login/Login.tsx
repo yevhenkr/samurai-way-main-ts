@@ -2,30 +2,47 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import React from "react";
 import {Input, Textarea} from "../comman/FormsControls/FormsControls";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
-
-export const Login = () => {
+import {connect} from "react-redux";
+import {login} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import {AppStateType} from "../../redux/redux-store";
+type Props =InjectedFormProps<FormDataType> & {
+    // Добавьте пропсы, которые поставляются через connect
+    login: (email: string, password: string, rememberMe: boolean) => void;
+    isAuth: boolean;
+};
+const Login: React.FC<Props> = (props) => {
     const onSubmit = (formData: FormDataType) => {
+        props.login(formData.email,formData.password, formData.rememberMe)
+    }
+
+    if (props.isAuth){
+        return <Redirect to={"/profile"}/>
     }
     return <div>
         <h1>Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
+const mapStateToProps = (state:AppStateType)=>({
+    isAuth: state.auth.isAuth
+})
+export default connect(mapStateToProps,{login})(Login)
 
 type FormDataType = {
-    login: string,
+    email: string,
     password: string,
     rememberMe: boolean
+    isAuth:boolean
 }
 const maxLength30 = maxLengthCreator(30)
-const maxLength20 = maxLengthCreator(20)
 
 let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return <form onSubmit={props.handleSubmit}>
-        <div><Field placeholder={"Loadin"} component={Textarea} name={"loadin"}
+        <div><Field placeholder={"Email"} component={Textarea} name={"email"}
                     validate={[requiredField, maxLength30]}/></div>
-        <div><Field placeholder={"Password"} component={Input} name={"password"}
-                    validate={[requiredField, maxLength20]}/></div>
+        <div><Field placeholder={"Password"} component={Input} name={"password"} type={"password"}
+                    validate={[requiredField, maxLength30]}/></div>
         <div><Field type="checkbox" component={"input"} name={"rememberMe"}/>remember me</div>
         <div>
             <button>Login</button>
@@ -34,5 +51,5 @@ let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 }
 
 const LoginReduxForm = reduxForm<FormDataType>({
-    form: "login"
+    form: "email"
 })(LoginForm)

@@ -1,11 +1,12 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
 import {profilePageReducer} from "./profile-page-reducer";
 import {messagePageReducer} from "./messages-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
-import thunk from "redux-thunk";
+import thunk, {ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from "redux-form";
+import {useDispatch} from 'react-redux';
 
 let rootReducer = combineReducers({
     profilePage: profilePageReducer,
@@ -20,8 +21,10 @@ export type AppStateType = ReturnType<typeof rootReducer>
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 
-// export type AppThunkDispatch = ThunkDispatch<AppStateType, any, AnyAction>
-// export type useAppDispatch =  () => useDispatch<AppThunkDispatch>();
+export type AppThunkDispatch = ThunkDispatch<AppStateType, any, AnyAction>
+// export const useAppDispatch = useDispatch<ThunkType>()
+// const useAppDispatch = useDispatch<AppThunkDispatch>();
+// Теперь useAppDispatch можно использовать для отправки санок, поддерживаемых redux-thunk
 
 //for vosability
 declare global {

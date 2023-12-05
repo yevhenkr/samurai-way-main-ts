@@ -1,4 +1,4 @@
-import React, { FC} from 'react';
+import React, {FC} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
@@ -8,7 +8,7 @@ import {
 } from "../../redux/profile-page-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {ProfileObject, ProfileObjectPhotos} from "../../redux/state";
-import { RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
@@ -16,6 +16,7 @@ type MapStateToPropsType = {
     profile: ProfileObject
     status: string
     isAuth: boolean
+    authorizedUserId: number
 }
 type MapDispatchToPropsType = {
     setUserProfile: (profile: ProfileObjectPhotos) => void
@@ -32,7 +33,7 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.id;
         if (!userId) {
-            userId = '2'
+            userId = this.props.authorizedUserId.toString()
         }
         this.props.getUserProfileThunkCreator(userId)
         this.props.getUserStatusThunkCreator(userId)
@@ -49,9 +50,10 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    authorizedUserId: state.auth.id
 })
-export default  compose<FC>(
+export default compose<FC>(
     connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateStatusThunkCreator}),
     withRouter,
     withAuthRedirect)

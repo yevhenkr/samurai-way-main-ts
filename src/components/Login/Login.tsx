@@ -6,17 +6,19 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-type Props =InjectedFormProps<FormDataType> & {
+import style from "../comman/FormsControls/FormsControl.module.css"
+
+type Props = InjectedFormProps<FormDataType> & {
     // Добавьте пропсы, которые поставляются через connect
     login: (email: string, password: string, rememberMe: boolean) => void;
     isAuth: boolean;
 };
 const Login: React.FC<Props> = (props) => {
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email,formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if (props.isAuth){
+    if (props.isAuth) {
         return <Redirect to={"/profile"}/>
     }
     return <div>
@@ -24,16 +26,16 @@ const Login: React.FC<Props> = (props) => {
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
-const mapStateToProps = (state:AppStateType)=>({
+const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 })
-export default connect(mapStateToProps,{login})(Login)
+export default connect(mapStateToProps, {login})(Login)
 
 type FormDataType = {
     email: string,
     password: string,
     rememberMe: boolean
-    isAuth:boolean
+    isAuth: boolean
 }
 const maxLength30 = maxLengthCreator(30)
 
@@ -44,6 +46,9 @@ let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
         <div><Field placeholder={"Password"} component={Input} name={"password"} type={"password"}
                     validate={[requiredField, maxLength30]}/></div>
         <div><Field type="checkbox" component={"input"} name={"rememberMe"}/>remember me</div>
+        {props.error && <div className={style.formSummaryError}>
+            {props.error}
+        </div>}
         <div>
             <button>Login</button>
         </div>
@@ -51,5 +56,5 @@ let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 }
 
 const LoginReduxForm = reduxForm<FormDataType>({
-    form: "email"
+    form: "login"
 })(LoginForm)

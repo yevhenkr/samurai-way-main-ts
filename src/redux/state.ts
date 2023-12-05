@@ -19,6 +19,7 @@ import {
     unfollowSuccess
 } from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
+import {initializedSuccess} from "./app-reducer";
 
 type PotsType = {
     message: string,
@@ -98,6 +99,7 @@ export type ActionType =
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof initializedSuccess>
 
 export let store: StoreType = {
     _state: {

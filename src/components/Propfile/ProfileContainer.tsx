@@ -10,7 +10,6 @@ import {AppStateType} from "../../redux/redux-store";
 import {ProfileObject, ProfileObjectPhotos} from "../../redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type MapStateToPropsType = {
     profile: ProfileObject
@@ -31,12 +30,12 @@ type PropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentPr
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.id;
+        let userId = Number(this.props.match.params.id) || this.props.authorizedUserId;
         if (!userId) {
-            userId = this.props.authorizedUserId.toString()
+            return this.props.history.push("/login");
         }
-        this.props.getUserProfileThunkCreator(userId)
-        this.props.getUserStatusThunkCreator(userId)
+        this.props.getUserProfileThunkCreator(userId.toString())
+        this.props.getUserStatusThunkCreator(userId.toString())
     }
 
     render() {
@@ -55,6 +54,5 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 })
 export default compose<FC>(
     connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateStatusThunkCreator}),
-    withRouter,
-    withAuthRedirect)
+    withRouter)
 (ProfileContainer)

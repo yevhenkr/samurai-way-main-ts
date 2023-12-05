@@ -14,7 +14,6 @@ import {
 } from "../../redux/users-reducer";
 import {compose} from "redux";
 import {FC} from "react";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export type UsersPropsType = {
     follow: (id: number) => void,
@@ -29,7 +28,7 @@ export type UsersPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: number[]
-    getUsers: (currentPage:number,pageSize:number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
 }
 
 const mapStateToPropsType = (state: AppStateType): UsersPageType => {
@@ -52,5 +51,5 @@ export const UsersContainer = compose<FC>(connect(mapStateToPropsType,
         setCurrentPage,
         toggleIsFollowingProgress,
         toggleIsFetching,
-        getUsers:getUsersThunkCreator
-    }),withAuthRedirect)(UsersCAPIComponent)
+        getUsers: getUsersThunkCreator
+    }))(UsersCAPIComponent)

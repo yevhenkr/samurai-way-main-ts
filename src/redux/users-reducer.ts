@@ -10,6 +10,7 @@ export type  UsersPageType = {
     isFetching: boolean
     followingInProgress: number[]
 }
+
 type LocationType = {
     country: string,
     city: string
@@ -54,7 +55,7 @@ const initialState: UsersPageType = {
     totalUserCount: 101,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
@@ -98,7 +99,6 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             return state
     }
 }
-
 export const followSuccess = (id: number) => {
     return {type: "FOLLOW", id} as const
 }

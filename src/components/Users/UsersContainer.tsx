@@ -19,8 +19,7 @@ import {
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUserCount,
-    getUsers
+    getTotalUserCount, getUsers
 } from "../../redux/users-selectors";
 
 export type UsersPropsType = {
@@ -46,7 +45,7 @@ const mapStateToPropsType = (state: AppStateType): UsersPageType => {
         totalUserCount: getTotalUserCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 

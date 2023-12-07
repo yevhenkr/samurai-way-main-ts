@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Profileinfo.module.css'
 import {ProfilePropsType} from "../../Profile";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 function ProfileInfo(props: ProfilePropsType) {
 
@@ -9,7 +9,7 @@ function ProfileInfo(props: ProfilePropsType) {
         <>
             <div>
                 <img src={'https://turist24.com/wp-content/uploads/2020/11/veneciya.jpeg'} alt={"no img"}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatusThunkCreator}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatusThunkCreator}/>
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={"no img"}/>

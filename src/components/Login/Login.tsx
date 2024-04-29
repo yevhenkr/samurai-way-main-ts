@@ -42,7 +42,7 @@ const maxLength30 = maxLengthCreator(30)
 let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <div><Field placeholder={"Email"} component={Textarea} name={"email"}
-                    validate={[requiredField, maxLength30]}/></div>
+                    validate={[requiredField, maxLength30]} /></div>
         <div><Field placeholder={"Password"} component={Input} name={"password"} type={"password"}
                     validate={[requiredField, maxLength30]}/></div>
         <div><Field type="checkbox" component={"input"} name={"rememberMe"}/>remember me</div>

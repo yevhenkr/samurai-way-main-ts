@@ -1,11 +1,11 @@
 import {WrappedFieldProps} from "redux-form/lib/Field";
-import styles from "./FormsControl.module.css"
+import s from "./FormsControl.module.css"
 import React, {ReactNode} from "react";
 
 export const FormControl = ({input, meta, ...props}: WrappedFieldProps & { children: ReactNode }) => {
     const hasError = meta.error && meta.touched
     return (
-        <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
+        <div className={s.formControl + " " + (hasError ? s.error : "")}>
             <div>
                 {props.children}
             </div>
@@ -15,9 +15,9 @@ export const FormControl = ({input, meta, ...props}: WrappedFieldProps & { child
 }
 
 export const Textarea = (props: WrappedFieldProps) => {
-    return <FormControl {...props} children={<textarea {...props.input} />}/>;
+    return <FormControl  {...props} children={<textarea className={s.backgroundWhite} {...props.input} />}/>;
 };
 
 export const Input = (props: WrappedFieldProps) => {
-    return <FormControl {...props} children={<input {...props.input} />}/>;
+    return <FormControl {...props} children={<input className={s.backgroundWhite}{...props.input} />}/>;
 }

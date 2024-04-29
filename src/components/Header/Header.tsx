@@ -13,7 +13,9 @@ function Header(props: MapStateToPropsType & MapDispatchToPropsType) {
                     <div><NavLink to={'/login'}>{props.email}</NavLink>
                         <button onClick={props.logout}>Log out</button>
                     </div> :
-                    <NavLink to={'/login'}>{"Login"}</NavLink>}
+                    <div>
+                    <NavLink to={'/login'}>{"Login"}</NavLink>
+                    </div>}
             </div>
         </header>
     );

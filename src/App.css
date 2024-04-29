@@ -9,5 +9,6 @@
 .app-wrapper-content {
     background-color: #18191a;;
     grid-area: c;
+    height: 100vh;
 }
 

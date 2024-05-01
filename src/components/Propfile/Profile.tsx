@@ -1,5 +1,5 @@
 import React from 'react';
-import Profileinfo from './MytPosts/ProfileInfo/ProfileInfo';
+import Profileinfo from './MytPosts/profileInfo/ProfileInfo';
 import {MyPostsContainer} from "./MytPosts/MyPostsContainer";
 import {ProfileObject} from "../../redux/state";
 

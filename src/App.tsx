@@ -4,7 +4,7 @@ import {Route} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Propfile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";

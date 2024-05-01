@@ -1,10 +1,10 @@
 import React, {memo} from 'react';
 import s from './MyPosts.module.scss'
-import PostsItems from './PostsItems/PostsItems';
+import PostsItems from './postsItems/PostsItems';
 import {MyPostPropsType} from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
-import {Textarea} from "../../comman/FormsControls/FormsControls";
+import {Textarea} from "../../comman/formsControls/FormsControls";
 
 type FormDataType = {
     newPostText: string,

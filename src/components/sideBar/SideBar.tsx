@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Nav/Navbar";
-import Friends from "../Friend/Friends";
+import Friends from "../friend/Friends";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {SideBarType} from "../../redux/state";

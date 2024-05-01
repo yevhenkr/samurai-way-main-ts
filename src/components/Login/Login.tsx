@@ -1,12 +1,12 @@
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import React from "react";
-import {Input, Textarea} from "../comman/FormsControls/FormsControls";
+import {Input, Textarea} from "../comman/formsControls/FormsControls";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import style from "../comman/FormsControls/FormsControl.module.scss"
+import style from "../comman/formsControls/FormsControl.module.scss"
 
 type Props = InjectedFormProps<FormDataType> & {
     // Добавьте пропсы, которые поставляются через connect

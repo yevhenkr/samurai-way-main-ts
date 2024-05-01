@@ -1,11 +1,12 @@
 .wrapperNav{
-    padding: 10px;
+    padding: 10px 20px;
 }
 .nav{
+    display: flex;
+    flex-direction: column;
 }
 
 .item a{
-    /*color: chocolate;*/
     text-decoration: none;
 }
 

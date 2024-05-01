@@ -6,26 +6,26 @@ function Navbar() {
     return (
         <div className={s.wrapperNav}>
         <nav className={s.nav}>
-            <div className={s.item}>
+            <button className={s.item}>
                 <NavLink className={s.nav} activeClassName={s.active} to={'/profile'}>Profile
                 </NavLink>
-            </div>
-            <div className={`${s.item} ${s.active}`}>
+            </button>
+            <button className={`${s.item} ${s.active}`}>
                 <NavLink className={s.nav} activeClassName={s.active} to={'/dialogs'}>Messages
                 </NavLink>
-            </div>
-            <div className={s.item}>
+            </button>
+            <button className={s.item}>
                 <NavLink className={s.nav} activeClassName={s.active} to={'/News'}>News
                 </NavLink>
-            </div>
-            <div className={s.item}>
+            </button>
+            <button className={s.item}>
                 <NavLink className={s.nav} activeClassName={s.active} to={'/Music'}>Music
                 </NavLink>
-            </div>
-            <div className={s.item}>
+            </button>
+            <button className={s.item}>
                 <NavLink className={s.nav} activeClassName={s.active} to={'/Users'}>Users
                 </NavLink>
-            </div>
+            </button>
 
         </nav>
         </div>

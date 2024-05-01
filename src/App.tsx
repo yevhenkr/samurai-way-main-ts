@@ -28,7 +28,7 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                 <HeaderContainer/>
                 <div className={s.sideBarBodyWrapper}>
                 <SideBar/>
-                <div className={s.appWrapperContent}>
+                  <div className={s.appWrapperContent}>
                     <Route path="/profile/:id?" render={() => <ProfileContainer/>}/>
                     <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                     <Route path={'/dialogs/:id'}
@@ -38,7 +38,7 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                     <Route path='/login' component={Login}/>
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
-                </div>
+                  </div>
             </div>
             </div>
         );

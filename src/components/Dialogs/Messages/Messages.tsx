@@ -1,4 +1,4 @@
-import s from './../Dialogs.module.css'
+import s from '../Dialogs.module.scss'
 import React from 'react';
 import {MessageType} from "../../../redux/messages-page-reducer";
 

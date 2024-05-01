@@ -1,4 +1,4 @@
-import s from './../Dialogs.module.css'
+import s from '../Dialogs.module.scss'
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {DialogsType} from "../../../redux/messages-page-reducer";

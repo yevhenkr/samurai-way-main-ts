@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import style from "../comman/FormsControls/FormsControl.module.css"
+import style from "../comman/FormsControls/FormsControl.module.scss"
 
 type Props = InjectedFormProps<FormDataType> & {
     // Добавьте пропсы, которые поставляются через connect

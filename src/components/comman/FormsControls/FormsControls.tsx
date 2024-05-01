@@ -1,5 +1,5 @@
 import {WrappedFieldProps} from "redux-form/lib/Field";
-import s from "./FormsControl.module.css"
+import s from "./FormsControl.module.scss"
 import React, {ReactNode} from "react";
 
 export const FormControl = ({input, meta, ...props}: WrappedFieldProps & { children: ReactNode }) => {

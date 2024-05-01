@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import s from './MyPosts.module.css'
+import s from './MyPosts.module.scss'
 import PostsItems from './PostsItems/PostsItems';
 import {MyPostPropsType} from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";

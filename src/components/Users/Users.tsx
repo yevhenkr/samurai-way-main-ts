@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./users.module.css"
+import s from "./users.module.scss"
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 import {follow, unfollow, UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";

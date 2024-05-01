@@ -1,14 +1,14 @@
 .app-wrapper {
     display: grid;
-    grid-template-areas: "h h" "n c";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
     color: #e4e6eb;
 }
 
 .app-wrapper-content {
     background-color: #18191a;;
-    grid-area: c;
     height: 100vh;
+}
+.sideBarBodyWrapper{
+    display: flex;
+    flex-direction: row;
 }
 

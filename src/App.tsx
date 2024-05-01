@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.module.scss';
 import Navbar from './components/Nav/Navbar';
 import {Route} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
@@ -11,6 +11,8 @@ import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import {AppStateType} from "./redux/redux-store";
 import Preloader from "./components/comman/preloader/Preloader";
+import SideBar from "./components/sideBar/SideBar"
+import s from "./App.module.scss"
 
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> {
@@ -23,10 +25,11 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
             return <Preloader/>
         }
         return (
-            <div className="app-wrapper">
+            <div className={s.appWrapper}>
                 <HeaderContainer/>
-                <Navbar/>
-                <div className="app-wrapper-content">
+                <div className={s.sideBarBodyWrapper}>
+                <SideBar/>
+                <div className={s.appWrapperContent}>
                     <Route path="/profile/:id?" render={() => <ProfileContainer/>}/>
                     <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                     <Route path={'/dialogs/:id'}
@@ -37,6 +40,7 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                     {/*    <Page pages={dataState.pages}/>}/>*/}
                     {/*<Route path={'/*'} element={<Error404/>}/>*/}
                 </div>
+            </div>
             </div>
         );
     }

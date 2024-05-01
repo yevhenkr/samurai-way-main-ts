@@ -1,9 +1,12 @@
+.wrapperNav{
+    padding: 10px;
+}
 .nav{
-    background-color:  #00efff;
 }
 
 .item a{
-    color: chocolate;
+    /*color: chocolate;*/
+    text-decoration: none;
 }
 
 .item a.active{

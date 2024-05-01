@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.module.scss';
-import Navbar from './components/Nav/Navbar';
 import {Route} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";

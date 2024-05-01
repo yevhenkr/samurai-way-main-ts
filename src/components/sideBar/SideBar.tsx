@@ -10,9 +10,7 @@ function SideBar() {
 
     return (<div className={s.wrapper}>
             <Navbar/>
-            <div style={{color: 'chocolate', textDecoration: 'underline'}}>Friends
                 <Friends friends={sidebar.friends}/>
-            </div>
         </div>
     );
 }

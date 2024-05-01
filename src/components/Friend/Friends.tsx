@@ -14,7 +14,7 @@ function Friends(props: FriendsPropsType) {
                  alt={'logo'}/>
             <span className={s.friendsName}>{friend.name}</span></div>
     </div>)
-    return <div className={s.friendsGroup}>
+        return <div className={s.friendsGroup}>
         {friends}
     </div>
 }

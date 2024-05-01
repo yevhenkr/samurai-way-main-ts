@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 function Navbar() {
     return (
+        <div className={s.wrapperNav}>
         <nav className={s.nav}>
             <div className={s.item}>
                 <NavLink className={s.nav} activeClassName={s.active} to={'/profile'}>Profile
@@ -27,6 +28,7 @@ function Navbar() {
             </div>
 
         </nav>
+        </div>
     );
 }
 

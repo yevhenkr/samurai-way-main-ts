@@ -1,3 +1,31 @@
-.descriptionBlock {
-    padding: 10px;
+.layoutWrapper{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.statusWrapper{
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.allInfo{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.aboutUser{
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 5px;
+}
+.bold{
+    font-weight: bold;
+}
+
+.lighter{
+    font-weight: lighter;
 }

@@ -34,13 +34,13 @@ function MyPosts(props: MyPostPropsType) {
     }
     return (
         <>
-            <div className={s.postsBlock}>My posts
+            <div className={s.userPostWrapper}>
                 <h3 className={s.posts}>My posts</h3>
                 <div>
                     <AddPostReduxForm onSubmit={addPostMessage}/>
                 </div>
+                <PostsItems posts={props.posts}/>
             </div>
-            <PostsItems posts={props.posts}/>
         </>
     );
 }

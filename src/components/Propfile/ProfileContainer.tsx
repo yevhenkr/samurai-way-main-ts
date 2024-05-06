@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import {
     getUserProfileThunkCreator,
     getUserStatusThunkCreator,
-    updateStatusThunkCreator
+    updateStatusThunkCreator,
+    putUserProfileThunkCreator
 } from "../../redux/profile-page-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {ProfileObject, ProfileObjectPhotos} from "../../redux/state";
@@ -22,6 +23,7 @@ type MapDispatchToPropsType = {
     getUserStatusThunkCreator: (userId: string) => void
     getUserProfileThunkCreator: (userId: string) => void
     updateStatusThunkCreator: (status: string) => void
+    putUserProfileThunkCreator: (data: ProfileObject)=> void
 }
 
 type PathParamsType = { id: string }
@@ -36,12 +38,13 @@ class ProfileContainer extends React.Component<PropsType> {
         }
         this.props.getUserProfileThunkCreator(userId.toString())
         this.props.getUserStatusThunkCreator(userId.toString())
+        this.props.getUserStatusThunkCreator(userId.toString())
     }
 
     render() {
         return <>
             <Profile profile={this.props.profile} status={this.props.status}
-                     updateStatusThunkCreator={this.props.updateStatusThunkCreator}/>
+                     updateStatusThunkCreator={this.props.updateStatusThunkCreator} putUserProfileThunkCreator={this.props.putUserProfileThunkCreator}/>
         </>
     }
 }
@@ -52,7 +55,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth,
     authorizedUserId: state.auth.id
 })
+
 export default compose<FC>(
-    connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateStatusThunkCreator}),
+    connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateStatusThunkCreator,putUserProfileThunkCreator}),
     withRouter)
 (ProfileContainer)

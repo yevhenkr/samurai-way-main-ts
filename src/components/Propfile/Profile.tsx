@@ -9,6 +9,7 @@ export type ProfilePropsType = {
     profile: ProfileObject
     status: string
     updateStatusThunkCreator: (status: string) => void
+    putUserProfileThunkCreator: (data: ProfileObject)=> any
 }
 
 function Profile(props: ProfilePropsType) {
@@ -25,7 +26,7 @@ function Profile(props: ProfilePropsType) {
             />
             <div>
             <Profileinfo profile={props.profile} status={props.status}
-                         updateStatusThunkCreator={props.updateStatusThunkCreator}/>
+                         updateStatusThunkCreator={props.updateStatusThunkCreator} putUserProfileThunkCreator={props.putUserProfileThunkCreator}/>
             <MyPostsContainer/>
             </div>
         </div>

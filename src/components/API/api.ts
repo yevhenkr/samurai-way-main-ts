@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {ProfileObject} from "../../redux/state";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0",
@@ -26,6 +27,7 @@ export const api = {
         })
     },
 }
+
 export const profileAPI = {
     getProfile(userId: string) {
         return instance.get(`/profile/${userId}`);
@@ -36,8 +38,15 @@ export const profileAPI = {
     putStatus(status: string) {
         return instance.put(`/profile/status`, {status: status});
     },
-
+    putProfile(data: ProfileObject) {
+        if (data.contacts && data.contacts.Github) {
+            data.contacts.github = data.contacts.Github;
+            data.contacts.Github = "data rewrite to github";
+        }
+        return instance.put(`/profile`, data);
+    },
 }
+
 export const authAPI = {
     me() {
         return instance.get(`/auth/me`)

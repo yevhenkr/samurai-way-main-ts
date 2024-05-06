@@ -79,6 +79,7 @@ export type ProfileObjectContacts = {
     instagram: string;
     youtube?: any;
     github: string;
+    Github: string; //use for response PutProfile
     mainLink?: any;
 }
 export type ProfileObjectPhotos = {
@@ -117,6 +118,7 @@ export let store: StoreType = {
                     twitter: '',
                     instagram: '',
                     github: '',
+                    Github: '',
                 },
                 lookingForAJob: false,
                 lookingForAJobDescription: '',

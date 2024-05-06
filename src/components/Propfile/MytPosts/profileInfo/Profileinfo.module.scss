@@ -6,7 +6,7 @@
 .statusWrapper{
     background-color: #ffffff;
     border-radius: 5px;
-    padding: 10px 5px;
+    padding: 15px 20px;
     display: flex;
     flex-direction: row;
     column-gap: 10px;
@@ -20,12 +20,18 @@
 .aboutUser{
     background-color: #ffffff;
     border-radius: 5px;
-    padding: 10px 5px;
+    padding: 15px 20px;
 }
 .bold{
     font-weight: bold;
 }
 
 .lighter{
+    font-weight: lighter;
+}
+
+.link{
+    color: #0000FF;
+    font-size: 15px;
     font-weight: lighter;
 }

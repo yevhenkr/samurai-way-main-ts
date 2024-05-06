@@ -27,6 +27,7 @@ const initialState: ProfilePageType = {
             twitter: '',
             instagram: '',
             github: '',
+            Github: '',
         },
         lookingForAJob: false,
         lookingForAJobDescription: '',
@@ -74,6 +75,9 @@ export const setUserProfile = (profile: any) => {
 export const setStatus = (status: string) => {
     return {type: "SET-STATUS", status} as const
 }
+// export const setProfile = (data: any) => {
+//     return {type: "SET-PROFILE", status} as const
+// }
 
 export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
     api.getProfile(userId).then((res) => {
@@ -85,8 +89,12 @@ export const getUserStatusThunkCreator = (userId: string) => (dispatch: Dispatch
         dispatch(setStatus(res.data))
     });
 }
+export const putUserProfileThunkCreator = (data: ProfileObject) => (dispatch: Dispatch) => {
+    profileAPI.putProfile(data).then((res) => {
+        dispatch(setUserProfile(data))
+    });
+}
 export const updateStatusThunkCreator = (status: string) => (dispatch: Dispatch) => {
-
     profileAPI.putStatus(status).then((res) => {
         if (res.data.resultCode === 0) {
             dispatch(setStatus(status))

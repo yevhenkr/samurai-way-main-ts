@@ -28,17 +28,17 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                 <HeaderContainer/>
                 <div className={s.sideBarBodyWrapper}>
                 <SideBar/>
-                  <div className={s.appWrapperContent}>
-                    <Route path="/profile/:id?" render={() => <ProfileContainer/>}/>
-                    <Route path="/dialogs" render={() => <DialogsContainer/>}/>
-                    <Route path={'/dialogs/:id'}
-                           render={() => <DialogsContainer/>}/>
-                    <Route path={'/users'}
-                           render={() => <UsersContainer/>}/>
-                    <Route path='/login' component={Login}/>
-                    {/*    <Page pages={dataState.pages}/>}/>*/}
-                    {/*<Route path={'/*'} element={<Error404/>}/>*/}
-                  </div>
+                  <ul className={s.appWrapperContent}>
+                      <li><Route path="/profile/:id?" render={() => <ProfileContainer/>}/></li>
+                      <li><Route path="/dialogs" render={() => <DialogsContainer/>}/></li>
+                          <li><Route path={'/dialogs/:id'}
+                                     render={() => <DialogsContainer/>}/></li>
+                                  <li><Route path={'/users'}
+                                             render={() => <UsersContainer/>}/></li>
+                                      <li><Route path='/login' component={Login}/></li>
+                                          {/*    <Page pages={dataState.pages}/>}/>*/}
+                                      {/*<Route path={'/*'} element={<Error404/>}/>*/}
+                  </ul>
             </div>
             </div>
         );

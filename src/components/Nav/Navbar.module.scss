@@ -4,12 +4,20 @@
 .nav{
     display: flex;
     flex-direction: column;
+    text-decoration: none;
 }
 
-.item a{
-    text-decoration: none;
+.item {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
 }
 
 .item a.active{
     font-weight: bold;
+}
+
+.icon {
+    display: flex;
+    align-self: center;
 }

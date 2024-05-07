@@ -28,18 +28,18 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                 <HeaderContainer/>
                 <div className={s.sideBarBodyWrapper}>
                 <SideBar/>
-                  <ul className={s.appWrapperContent}>
-                      <li><Route path="/profile/:id?" render={() => <ProfileContainer/>}/></li>
-                      <li><Route path="/dialogs" render={() => <DialogsContainer/>}/></li>
-                          <li><Route path={'/dialogs/:id'}
-                                     render={() => <DialogsContainer/>}/></li>
-                                  <li><Route path={'/users'}
-                                             render={() => <UsersContainer/>}/></li>
-                                      <li><Route path='/login' component={Login}/></li>
-                                          {/*    <Page pages={dataState.pages}/>}/>*/}
-                                      {/*<Route path={'/*'} element={<Error404/>}/>*/}
-                  </ul>
-            </div>
+                    <ul className={s.appWrapperContent}>
+                        <li><Route path="/profile/:id?" render={() => <ProfileContainer/>}/></li>
+                        <li><Route path="/dialogs" render={() => <DialogsContainer/>}/></li>
+                        <li><Route path={'/dialogs/:id'}
+                                   render={() => <DialogsContainer/>}/></li>
+                        <li><Route path={'/users'}
+                                   render={() => <UsersContainer/>}/></li>
+                        <li><Route path='/login' component={Login}/></li>
+                        {/*    <Page pages={dataState.pages}/>}/>*/}
+                        {/*<Route path={'/*'} element={<Error404/>}/>*/}
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -54,4 +54,4 @@ type MapDispatchToPropsType = {
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     initialize: state.app.initialized
 })
-export default connect(mapStateToProps, { initializeApp})(App)
+export default connect(mapStateToProps, {initializeApp})(App)

@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {PersonIcon} from "../../assets/icons/personIcon";
 import {MessagesIcon} from "../../assets/icons/messagesIcon";
 import UsersIcon from "../../assets/icons/usersIcon";
+import NewsIcon from "../../assets/icons/newsIcon";
 
 function Navbar() {
     return (
@@ -31,10 +32,13 @@ function Navbar() {
                         <NavLink className={s.nav} activeClassName={s.active} to={'/Users'}>Users
                         </NavLink>
                     </li>
-                    <span className={s.item}>
+                    <li className={s.item}>
+                          <span className={s.icon}>
+                            <NewsIcon/>
+                        </span>
                         <NavLink className={s.nav} activeClassName={s.active} to={'/News'}>News
                         </NavLink>
-                    </span>
+                    </li>
                     <span className={s.item}>
                         <NavLink className={s.nav} activeClassName={s.active} to={'/Music'}>Music
                         </NavLink>

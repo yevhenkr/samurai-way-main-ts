@@ -5,47 +5,51 @@ import {PersonIcon} from "../../assets/icons/personIcon";
 import {MessagesIcon} from "../../assets/icons/messagesIcon";
 import UsersIcon from "../../assets/icons/usersIcon";
 import NewsIcon from "../../assets/icons/newsIcon";
+import MusicIcon from "../../assets/icons/musicIcon";
 
 function Navbar() {
     return (
         <div className={s.wrapperNav}>
             <nav>
-                <ul className={s.nav}>
+                <ul className={s.ul}>
                     <li className={s.item}>
                         <span className={s.icon}>
                             <PersonIcon/>
                         </span>
-                            <NavLink className={s.nav} activeClassName={s.active} to={'/profile'}>Profile
-                            </NavLink>
+                        <NavLink className={s.navLink} activeClassName={s.active} to={'/profile'}>Profile
+                        </NavLink>
                     </li>
                     <li className={s.item}>
                         <span className={s.icon}>
                             <MessagesIcon/>
                         </span>
-                            <NavLink className={s.nav} activeClassName={s.active} to={'/dialogs'}>Messages
-                            </NavLink>
+                        <NavLink className={s.navLink} activeClassName={s.active} to={'/dialogs'}>Messages
+                        </NavLink>
                     </li>
                     <li className={s.item}>
                         <span className={s.icon}>
-                            <UsersIcon />
+                            <UsersIcon/>
                         </span>
-                        <NavLink className={s.nav} activeClassName={s.active} to={'/Users'}>Users
+                        <NavLink className={s.navLink} activeClassName={s.active} to={'/Users'}>Users
                         </NavLink>
                     </li>
                     <li className={s.item}>
                           <span className={s.icon}>
                             <NewsIcon/>
                         </span>
-                        <NavLink className={s.nav} activeClassName={s.active} to={'/News'}>News
+                        <NavLink className={s.navLink} activeClassName={s.active} to={'/News'}>News
                         </NavLink>
                     </li>
-                    <span className={s.item}>
-                        <NavLink className={s.nav} activeClassName={s.active} to={'/Music'}>Music
+                    <li className={s.item}>
+                        <span className={s.icon}>
+                            <MusicIcon/>
+                        </span>
+                        <NavLink className={s.navLink} activeClassName={s.active} to={'/Music'}>Music
                         </NavLink>
-                    </span>
-                    {/*<li><a aria-current="page" href="#/profile">*/}
+                    </li>
+                {/*<li><a aria-current="page" href="#/profile">*/}
 
-                    {/*    <span>PProfile</span></a></li>*/}
+                        {/*    <span>PProfile</span></a></li>*/}
                 </ul>
             </nav>
         </div>

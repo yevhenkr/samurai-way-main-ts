@@ -1,12 +1,19 @@
 .wrapperNav{
     padding: 10px 20px;
 }
-.nav{
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-}
 
+.ul{
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+    line-height: 1;
+}
+.navLink{
+    //display: flex;
+    //flex-direction: column;
+    text-decoration: none;
+    line-height: 1;
+}
 .item {
     display: flex;
     flex-direction: row;

@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Profileinfo.module.scss'
 import {ProfilePropsType} from "../../Profile";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
-import {UserPhoto} from "../../../userPhoto/UserPhoto";
 
 function ProfileInfo(props: ProfilePropsType) {
     return (

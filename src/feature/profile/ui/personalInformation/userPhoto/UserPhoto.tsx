@@ -24,14 +24,13 @@ export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name }: AvatarEditType
       inputRef.current.value = ''
     }
   }
-
   return (
       <div className={s.avatarGroup}>
         {avatar ? (
             <Avatar className={s.customAvatar} name={name} src={avatar}/>
         ) : (
             <NoUserIcon className={s.customAvatar}/>
-  )
+        )
 }
 {
   avatar && (
@@ -40,7 +39,8 @@ export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name }: AvatarEditType
             <TrashIcon width={16} />
           </span>
         </label>
-      )}
+      )
+}
       {
         !modeOn && (
         <label htmlFor={'avatarId'}>

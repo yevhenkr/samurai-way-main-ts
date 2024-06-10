@@ -12,6 +12,8 @@ import {AppStateType} from "./redux/redux-store";
 import Preloader from "./components/comman/preloader/Preloader";
 import SideBar from "./components/sideBar/SideBar"
 import s from "./App.module.scss"
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/700.css'
 
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> {

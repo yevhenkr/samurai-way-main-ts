@@ -31,8 +31,12 @@ a{
   color: #000;
   font-size: 20px;
 }
-button,li {
+li {
   all: unset;
+}
+button{
+  border: solid 1px #595757;
+  border-radius: 2px;
 }
 ul{
   padding-inline-start: 0;

@@ -1,6 +1,8 @@
 .header {
-    background-color: #242526;;
+    background: #001529;
     padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header img {
@@ -8,7 +10,8 @@
 }
 
 .loginBlock {
-    float: right;
+    display: flex;
+    align-items: center;
 }
 
 .loginBlock a {

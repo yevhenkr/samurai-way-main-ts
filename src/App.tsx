@@ -12,8 +12,10 @@ import {AppStateType} from "./redux/redux-store";
 import Preloader from "./components/comman/preloader/Preloader";
 import SideBar from "./components/sideBar/SideBar"
 import s from "./App.module.scss"
+import { ThemeProvider } from '../src/components/ui/themeProvider/ThemeProvider'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/700.css'
+import '../src/styles/index.scss'
 
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> {
@@ -26,7 +28,9 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
             return <Preloader/>
         }
         return (
+                <ThemeProvider>
             <div className={s.appWrapper}>
+
                 <HeaderContainer/>
                 <div className={s.sideBarBodyWrapper}>
                 <SideBar/>
@@ -43,6 +47,7 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                     </ul>
                 </div>
             </div>
+                    </ThemeProvider>
         );
     }
 }

@@ -13,7 +13,6 @@ export const Button = <T extends ElementType = 'button'>(
   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
 ) => {
   const { as: Component = 'button', className, fullWidth, variant = 'primary', ...rest } = props
-  debugger
   return (
     <Component {...rest} className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} />
   )

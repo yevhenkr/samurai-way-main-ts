@@ -11,13 +11,13 @@ function Header(props: MapStateToPropsType & MapDispatchToPropsType) {
         <header className={s.header}>
             <img className={s.logo}
                 src={logo} alt={'logo'}/>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className={s.loginBlock}>
+            <div className={s.loginBlock}>
                 {props.isAuth ?
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}><NavLink to={'/login'}>{props.email}</NavLink>
+                    <div className={s.logoOutWrapper}><NavLink to={'/login'}>{props.email}</NavLink>
                         <Button onClick={props.logout}>Log out</Button>
-                    </div> :
-                    <div>
-                    <NavLink to={'/login'}>{"Login"}</NavLink>
+                    </div>
+                    : <div>
+                       <NavLink to={'/login'}>{"Login"}</NavLink>
                     </div>}
             </div>
         </header>

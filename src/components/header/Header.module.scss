@@ -1,5 +1,6 @@
 .header {
-    background: #001529;
+    //background: #001529;
+    background: var(--color-head);
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
@@ -16,6 +17,13 @@
 
 .loginBlock a {
     color: #e4e6eb;
+}
+
+.logoOutWrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    column-gap: 5px;
 }
 
 .logo{

@@ -2,8 +2,9 @@ import React from "react";
 import s from "./users.module.scss"
 import defaultUserIcon from "../../assets/DefaultUserIcon.png";
 import {follow, unfollow, UserType} from "../../redux/users-reducer";
-import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {NavLink, useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -16,6 +17,12 @@ type UsersPropsType = {
     followingInProgress: number[]
 }
 export const Users: React.FC<UsersPropsType> = (props) => {
+    const userId = useSelector((state: AppStateType) => state.auth.id);
+    const history = useHistory();
+    if (!userId) {
+        history.push("/login");
+    }
+
     const dispatch = useDispatch<any>()
     return <div className={s.items}>
         <div>

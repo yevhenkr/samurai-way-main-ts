@@ -1,4 +1,7 @@
 .appWrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     height: 100vh;
 }
 
@@ -8,6 +11,7 @@
 }
 .sideBarBodyWrapper{
     display: flex;
+    flex: 1;
     flex-direction: row;
     padding: 0 20px;
     column-gap: 20px;

@@ -16,6 +16,7 @@ import { ThemeProvider } from '../src/components/ui/themeProvider/ThemeProvider'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/700.css'
 import '../src/styles/index.scss'
+import Footer from "./components/footer/Footer";
 
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> {
@@ -28,26 +29,24 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
             return <Preloader/>
         }
         return (
-                <ThemeProvider>
-            <div className={s.appWrapper}>
-
-                <HeaderContainer/>
-                <div className={s.sideBarBodyWrapper}>
-                <SideBar/>
-                    <ul className={s.appWrapperContent}>
-                        <li><Route path="/profile/:id?" render={() => <ProfileContainer/>}/></li>
-                        <li><Route path="/dialogs" render={() => <DialogsContainer/>}/></li>
-                        <li><Route path={'/dialogs/:id'}
-                                   render={() => <DialogsContainer/>}/></li>
-                        <li><Route path={'/users'}
-                                   render={() => <UsersContainer/>}/></li>
-                        <li><Route path='/login' component={Login}/></li>
-                        {/*    <Page pages={dataState.pages}/>}/>*/}
-                        {/*<Route path={'/*'} element={<Error404/>}/>*/}
-                    </ul>
+            <ThemeProvider>
+                <div className={s.appWrapper}>
+                    <HeaderContainer/>
+                    <div className={s.sideBarBodyWrapper}>
+                        <SideBar/>
+                        <ul className={s.appWrapperContent}>
+                            <li><Route path="/profile/:id?" render={() => <ProfileContainer/>}/></li>
+                            <li><Route path="/dialogs" render={() => <DialogsContainer/>}/></li>
+                            <li><Route path={'/dialogs/:id'} render={() => <DialogsContainer/>}/></li>
+                            <li><Route path={'/users'} render={() => <UsersContainer/>}/></li>
+                            <li><Route path='/login' component={Login}/></li>
+                            {/*    <Page pages={dataState.pages}/>}/>*/}
+                            {/*<Route path={'/*'} element={<Error404/>}/>*/}
+                        </ul>
+                    </div>
+                    <Footer/>
                 </div>
-            </div>
-                    </ThemeProvider>
+            </ThemeProvider>
         );
     }
 }

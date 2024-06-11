@@ -3,7 +3,7 @@ import s from './Header.module.scss';
 import {NavLink} from "react-router-dom";
 import {MapDispatchToPropsType, MapStateToPropsType} from "./HeaderContainer";
 import logo from '../../assets/img/ms-icon-310x310.png';
-import { Button } from '../../components/ui/button'
+import { Button } from '../../components/ui/button';
 
 
 function Header(props: MapStateToPropsType & MapDispatchToPropsType) {
@@ -17,7 +17,7 @@ function Header(props: MapStateToPropsType & MapDispatchToPropsType) {
                         <Button onClick={props.logout}>Log out</Button>
                     </div>
                     : <div>
-                       <NavLink to={'/login'}>{"Login"}</NavLink>
+                        <Button  to={'/login'} as={NavLink}>{"Login"}</Button>
                     </div>}
             </div>
         </header>

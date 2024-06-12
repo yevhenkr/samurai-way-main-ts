@@ -7,6 +7,9 @@ import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import style from "../comman/formsControls/FormsControl.module.scss"
+import s from './Login.module.scss'
+import {Button} from "../ui/button";
+
 
 type Props = InjectedFormProps<FormDataType> & {
     // Добавьте пропсы, которые поставляются через connect
@@ -21,7 +24,7 @@ const Login: React.FC<Props> = (props) => {
     if (props.isAuth) {
         return <Redirect to={"/profile"}/>
     }
-    return <div>
+    return <div className={s.allForm}>
         <h1>Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
@@ -40,8 +43,8 @@ type FormDataType = {
 const maxLength30 = maxLengthCreator(30)
 
 let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    return <form onSubmit={props.handleSubmit}>
-        <div><Field placeholder={"Email"} component={Textarea} name={"email"}
+    return <form onSubmit={props.handleSubmit} className={s.form}>
+        <div><Field placeholder={"Email"} component={Input} name={"email"}
                     validate={[requiredField, maxLength30]} /></div>
         <div><Field placeholder={"Password"} component={Input} name={"password"} type={"password"}
                     validate={[requiredField, maxLength30]}/></div>
@@ -50,7 +53,7 @@ let LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             {props.error}
         </div>}
         <div>
-            <button>Login</button>
+            <Button>Login</Button>
         </div>
     </form>
 }

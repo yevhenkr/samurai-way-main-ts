@@ -20,7 +20,7 @@ function Profile(props: ProfilePropsType) {
             <UserPhoto avatar={me?.avatar} name={me?.name} modeOn={false} deleteAvatar={()=>{}}/>
             <div>
             <Profileinfo profile={props.profile} status={props.status}
-                         updateStatusThunkCreator={props.updateStatusThunkCreator} putUserProfileThunkCreator={props.putUserProfileThunkCreator}/>
+                         updateStatusThunkCreator={props.updateStatusThunkCreator} putUserProfileThunkCreator={props.putUserProfileThunkCreator} />
             <MyPostsContainer/>
             </div>
         </div>

@@ -1,5 +1,6 @@
 .userPostWrapper{
-    background-color: #fff;
+    background-color: var(--color-dark-900);
+    border: solid 1px var(--color-dark-500);
     border-radius: 5px;
     padding: 15px 20px;
 }

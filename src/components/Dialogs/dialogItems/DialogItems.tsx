@@ -8,10 +8,10 @@ type DialogItemsPropsType = {
 }
 export const DialogItems = (props: DialogItemsPropsType) => {
     const path = '/dialogs/'
-
-    let dialogsElements = props.dialogs.map((dialog: DialogsType) =>
+    console.log(`${props.dialogs}`)
+    let dialogsElements = props.dialogs.map((dialog: DialogsType, index) =>
         <div key={dialog.id}>
-            <NavLink to={`${path}${dialog.id}`}>{dialog.name}</NavLink>
+            <NavLink to={`${path}${index}`}>{dialog.name}</NavLink>
         </div>
     )
 

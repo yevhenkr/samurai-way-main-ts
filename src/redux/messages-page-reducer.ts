@@ -22,14 +22,12 @@ const initialState: DialogPageType = {
     dialogs: [
         {name: 'Dimych', id: v1()},
         {name: 'Ivan', id: v1()},
-        {name: 'Sergei', id: v1()},
-        {name: 'Andrey', id: v1()},
-        {name: 'Oleg', id: v1()}
+        {name: 'Dimych', id: v1()},
     ] as DialogsType[],
     messages: [
         {text: '- Hi', id: v1()},
-        {text: '- How are you itika', id: v1()},
-        {text: '- You', id: v1()}
+        {text: '- How are you Dimych', id: v1()},
+        {text: '- Fine', id: v1()}
     ] as MessageType[],
 }
 

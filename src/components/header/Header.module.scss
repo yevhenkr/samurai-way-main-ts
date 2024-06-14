@@ -1,9 +1,12 @@
 .header {
     //background: #001529;
-    background: var(--color-head);
+    background: var(--color-dark-900);
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    //box-shadow: 0 8px 30px rgba(0,0,0,.05);
+
 }
 
 .header img {

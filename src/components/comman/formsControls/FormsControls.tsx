@@ -2,22 +2,27 @@ import {WrappedFieldProps} from "redux-form/lib/Field";
 import s from "./FormsControl.module.scss"
 import React, {ReactNode} from "react";
 
-export const FormControl = ({input, meta, ...props}: WrappedFieldProps & { children: ReactNode }) => {
-    const hasError = meta.error && meta.touched
+export const FormControl = ({ input, meta, children }: WrappedFieldProps & { children: ReactNode }) => {
+    const hasError = meta.error && meta.touched;
     return (
-        <div className={s.formControl + " " + (hasError ? s.error : "")}>
+        <div className={`${s.formControl} ${hasError ? s.error : ''}`}>
             <div>
-                {props.children}
+                {children}
             </div>
             {hasError && <span>{meta.error}</span>}
         </div>
-    )
-}
-
-export const Textarea = (props: WrappedFieldProps) => {
-    return <FormControl  {...props} children={<textarea className={s.backgroundWhite} {...props.input} />}/>;
+    );
 };
 
-export const Input = (props: WrappedFieldProps) => {
-    return <FormControl {...props} children={<input className={s.backgroundWhite}{...props.input} />}/>;
+export const Textarea = ({ input, meta, className, ...rest }: WrappedFieldProps & { className?: string }) => {
+    debugger
+    return (
+        <FormControl input={input} meta={meta} {...rest}>
+            <textarea className={`${s.backgroundWhite} ${className}`} {...input} />
+        </FormControl>
+    );
+};
+
+export const Input = (props: WrappedFieldProps & { className?: string }) => {
+    return <FormControl {...props} children={<input className={`${s.backgroundWhite} ${props.className}`}{...props.input} />}/>;
 }

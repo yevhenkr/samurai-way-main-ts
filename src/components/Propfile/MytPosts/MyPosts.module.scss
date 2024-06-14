@@ -7,3 +7,16 @@
 .posts{
     margin: 10px 0;
 }
+
+.inputWrap{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    column-gap: 10px;
+}
+.input{
+    height: 25px;
+}
+.button{
+    align-self: flex-start;
+}

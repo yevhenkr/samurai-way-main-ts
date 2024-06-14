@@ -15,7 +15,6 @@ export const FormControl = ({ input, meta, children }: WrappedFieldProps & { chi
 };
 
 export const Textarea = ({ input, meta, className, ...rest }: WrappedFieldProps & { className?: string }) => {
-    debugger
     return (
         <FormControl input={input} meta={meta} {...rest}>
             <textarea className={`${s.backgroundWhite} ${className}`} {...input} />

@@ -5,12 +5,10 @@
     display: flex;
     justify-content: space-between;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    //box-shadow: 0 8px 30px rgba(0,0,0,.05);
-
 }
 
 .header img {
-    max-height: 50px;
+    max-height: 60px;
 }
 
 .loginBlock {
@@ -30,5 +28,5 @@
 }
 
 .logo{
-    padding: 5px 0;
+    padding: 10px 0;
 }

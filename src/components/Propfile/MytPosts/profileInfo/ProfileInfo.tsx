@@ -9,7 +9,7 @@ function ProfileInfo(props: ProfilePropsType) {
             <div className={s.allInfo}>
                 <div>
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatusThunkCreator}/>
-                    <button  onClick={()=>props.putUserProfileThunkCreator({aboutMe:"Eugen", fullName:"1",contacts:{github:"https://github.com/yevhenkr",Github: "", facebook:"",instagram:"https://www.instagram.com/anastasiakrachek",twitter:"",mainLink:"",vk:"", website:"",youtube:""},userId: 29231, lookingForAJob: false, lookingForAJobDescription:"3",photos: {small:"",large:""}})}>setr</button>
+                    {/*<button  onClick={()=>props.putUserProfileThunkCreator({aboutMe:"Eugen", fullName:"1",contacts:{github:"https://github.com/yevhenkr",Github: "", facebook:"",instagram:"https://www.instagram.com/anastasiakrachek",twitter:"",mainLink:"",vk:"", website:"",youtube:""},userId: 29231, lookingForAJob: false, lookingForAJobDescription:"3",photos: {small:"",large:""}})}>setr</button>*/}
                 </div>
                 <div className={s.aboutUser}>
                  <div className={s.bold}>{"Github : "}<a href={props.profile.contacts.github} className={s.link}>{props.profile.contacts.github}</a>

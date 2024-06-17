@@ -13,16 +13,13 @@ type AvatarEditType = {
   deleteAvatar: () => void
   modeOn: boolean
   name?: string
-  // onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  isOwner: boolean
 }
-export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name }: AvatarEditType) => {
+export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name, onChange,isOwner }: AvatarEditType) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    // onChange(event)
-    //TODO
-    if (inputRef.current) {
-      inputRef.current.value = ''
-    }
+    onChange( event)
   }
   return (
       <div className={s.avatarGroup}>
@@ -30,27 +27,25 @@ export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name }: AvatarEditType
             <Avatar className={s.customAvatar} name={name} src={avatar}/>
         ) : (
             <NoUserIcon className={s.customAvatar}/>
-        )
-}
-{
-  avatar && (
-      <label onClick={deleteAvatar}>
+        )}
+        {avatar && (
+        <label onClick={deleteAvatar}>
           <span className={clsx(s.icon, s.trashIcon)}>
             <TrashIcon width={16} />
           </span>
         </label>
-      )
-}
+        )}
       {
         !modeOn && (
-        <label htmlFor={'avatarId'}>
+        <label htmlFor={'image'}>
           <span className={clsx(s.icon, s.editIcon)}>
             <EditIcon width={16} />
           </span>
 
           <input
             className={s.avatarEditor}
-            id={'avatarId'}
+            id={'image'}
+            name={"image"}
             onChange={onChangeHandler}
             ref={inputRef}
             type={'file'}

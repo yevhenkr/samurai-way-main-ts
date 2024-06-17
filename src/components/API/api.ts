@@ -3,7 +3,8 @@ import {ProfileObject} from "../../redux/state";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0",
-    withCredentials: true
+    withCredentials: true,
+    headers: {"API-KEY":"ea858fca-ab41-4a51-b908-8563a6bea420"}
 })
 
 export const api = {
@@ -45,6 +46,11 @@ export const profileAPI = {
         }
         return instance.put(`/profile`, data);
     },
+    putPhoto(data:File) {
+        const formData = new FormData()
+        formData.append('image', data)
+        return instance.put(`/profile/photo`, formData, {headers: {'Content-Type':"multipart/form-data"}})
+    }
 }
 
 export const authAPI = {

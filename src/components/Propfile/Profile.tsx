@@ -24,7 +24,7 @@ function Profile(props: ProfilePropsType) {
                 const formData = new FormData()
                 formData.append('image', event.target.files[0])
                 if(props.updatePhotoThunkCreator){
-                props.updatePhotoThunkCreator(event)
+                props.updatePhotoThunkCreator(formData)
                 }
                 // await setEditProfile(formData).then(() => toast.success('Photo changed successfully.'))
             }

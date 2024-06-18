@@ -47,7 +47,9 @@ export const profileAPI = {
         return instance.put(`/profile`, data);
     },
     putPhoto(data:File) {
-        return instance.put(`/profile/photo`, data, {headers: {'Content-Type':"multipart/form-data"}})
+        const formData = new FormData()
+        formData.append('image', data)
+        return instance.put(`/profile/photo`, formData, {headers: {'Content-Type':"multipart/form-data"}})
     }
 }
 

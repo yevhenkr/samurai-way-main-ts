@@ -4,8 +4,6 @@ import {MyPostsContainer} from "./MytPosts/MyPostsContainer";
 import {ProfileObject} from "../../redux/state";
 import s from "./MytPosts/profileInfo/Profileinfo.module.scss";
 import {UserPhoto} from "../../feature/profile/ui/personalInformation/userPhoto/UserPhoto";
-// import {toast} from "react-toastify";
-import {updatePhotoThunkCreator} from "../../redux/profile-page-reducer";
 
 export type ProfilePropsType = {
     avatar?: string
@@ -21,10 +19,8 @@ function Profile(props: ProfilePropsType) {
     const updatePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
         try {
             if (event.target.files) {
-                const formData = new FormData()
-                formData.append('image', event.target.files[0])
                 if(props.updatePhotoThunkCreator){
-                props.updatePhotoThunkCreator(formData)
+                props.updatePhotoThunkCreator(event)
                 }
                 // await setEditProfile(formData).then(() => toast.success('Photo changed successfully.'))
             }

@@ -58,6 +58,12 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
                 ...state,
                 status: action.status
             }
+        case "SET-PHOTO":
+            return {
+                ...state, profile: {...state.profile, photos: {
+                        ...state.profile.photos, large: action.photo.large, small: action.photo.small}
+                }
+            }
         default:
             return state
     }
@@ -75,8 +81,8 @@ export const setUserProfile = (profile: any) => {
 export const setStatus = (status: string) => {
     return {type: "SET-STATUS", status} as const
 }
-export const setPhoto = (status: string) => {
-    return {type: "SET-STATUS", status} as const
+export const setPhoto = (photo: any) => {
+    return {type: "SET-PHOTO", photo} as const
 }
 
 export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
@@ -104,7 +110,7 @@ export const updateStatusThunkCreator = (status: string) => (dispatch: Dispatch)
 export const updatePhotoThunkCreator = (photo: any) => (dispatch: Dispatch) => {
     profileAPI.putPhoto(photo.target.files[0]).then((res) => {
         if (res.data.resultCode === 0) {
-            dispatch(setPhoto(photo))
+            dispatch(setPhoto(res.data.data.photos))
         }
     });
 }

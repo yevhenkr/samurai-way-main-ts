@@ -6,7 +6,8 @@ import {
     profilePageReducer,
     ProfilePageType,
     setStatus,
-    setUserProfile
+    setUserProfile,
+    setPhoto
 } from "./profile-page-reducer";
 import {sideBarReducer} from "./side-bar-reduser";
 import {
@@ -101,6 +102,7 @@ export type ActionType =
     | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
+    | ReturnType<typeof setPhoto>
 
 export let store: StoreType = {
     _state: {

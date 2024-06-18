@@ -2,7 +2,6 @@ import { ChangeEvent, useRef } from 'react'
 
 import { EditIcon } from '../../../../../assets/icons/editIcon'
 import { NoUserIcon } from '../../../../../assets/icons/noUserIcon'
-import { TrashIcon } from '../../../../../assets/icons/trashIcon'
 import { Avatar } from '../../../../../components/avatar'
 import { clsx } from 'clsx'
 
@@ -21,6 +20,7 @@ export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name, onChange }: Avat
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     onChange( event)
   }
+
   return (
       <div className={s.avatarGroup}>
         {avatar ? (
@@ -28,22 +28,14 @@ export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name, onChange }: Avat
         ) : (
             <NoUserIcon className={s.customAvatar}/>
         )}
-        {avatar && (
-        <label onClick={deleteAvatar}>
-          <span className={clsx(s.icon, s.trashIcon)}>
-            <TrashIcon width={16} />
-          </span>
-        </label>
-        )}
-      {
-        !modeOn && (
-        <label htmlFor={'image'}>
+        {
+            !modeOn && (
+                <label htmlFor={'image'}>
           <span className={clsx(s.icon, s.editIcon)}>
-            <EditIcon width={16} />
+            <EditIcon width={16}/>
           </span>
-
-          <input
-            className={s.avatarEditor}
+                  <input
+                      className={s.avatarEditor}
             id={'image'}
             name={"image"}
             onChange={onChangeHandler}

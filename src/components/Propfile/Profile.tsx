@@ -31,7 +31,7 @@ function Profile(props: ProfilePropsType) {
 
     return (
         <div className={s.layoutWrapper}>
-            <UserPhoto avatar={props.avatar} name={me?.name} modeOn={false} deleteAvatar={()=>{}}  onChange={updatePhoto}/>
+                <UserPhoto avatar={props.avatar} name={me?.name} modeOn={false} deleteAvatar={()=>{}}  onChange={updatePhoto}/>
             <div>
                 <Profileinfo profile={props.profile} status={props.status}
                              updateStatusThunkCreator={props.updateStatusThunkCreator} putUserProfileThunkCreator={props.putUserProfileThunkCreator} />

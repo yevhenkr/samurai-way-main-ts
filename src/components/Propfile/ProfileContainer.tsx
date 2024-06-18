@@ -40,12 +40,11 @@ class ProfileContainer extends React.Component<PropsType> {
         }
         this.props.getUserProfileThunkCreator(userId.toString())
         this.props.getUserStatusThunkCreator(userId.toString())
-        this.props.getUserStatusThunkCreator(userId.toString())
     }
 
     render() {
         return <>
-            <Profile isOwner={!!Number(this.props.authorizedUserId)} profile={this.props.profile} status={this.props.status}
+            <Profile avatar={this.props.profile.photos.large} profile={this.props.profile} status={this.props.status}
                      updateStatusThunkCreator={this.props.updateStatusThunkCreator} putUserProfileThunkCreator={this.props.putUserProfileThunkCreator} updatePhotoThunkCreator={this.props.updatePhotoThunkCreator}/>
         </>
     }

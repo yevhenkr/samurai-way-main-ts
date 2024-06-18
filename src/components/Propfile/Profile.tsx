@@ -8,7 +8,7 @@ import {UserPhoto} from "../../feature/profile/ui/personalInformation/userPhoto/
 import {updatePhotoThunkCreator} from "../../redux/profile-page-reducer";
 
 export type ProfilePropsType = {
-    isOwner: boolean
+    avatar?: string
     profile: ProfileObject
     status: string
     updateStatusThunkCreator: (status: string) => void
@@ -17,14 +17,13 @@ export type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
-    let me={avatar: undefined, name: undefined,}
+    let me={name: undefined}
     const updatePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
         try {
             if (event.target.files) {
                 const formData = new FormData()
                 formData.append('image', event.target.files[0])
                 if(props.updatePhotoThunkCreator){
-                    debugger
                 props.updatePhotoThunkCreator(event)
                 }
                 // await setEditProfile(formData).then(() => toast.success('Photo changed successfully.'))
@@ -36,11 +35,11 @@ function Profile(props: ProfilePropsType) {
 
     return (
         <div className={s.layoutWrapper}>
-            <UserPhoto isOwner={props.isOwner} avatar={me?.avatar} name={me?.name} modeOn={false} deleteAvatar={()=>{}}  onChange={updatePhoto}/>
+            <UserPhoto avatar={props.avatar} name={me?.name} modeOn={false} deleteAvatar={()=>{}}  onChange={updatePhoto}/>
             <div>
-            <Profileinfo isOwner={!!props.isOwner} profile={props.profile} status={props.status}
-                         updateStatusThunkCreator={props.updateStatusThunkCreator} putUserProfileThunkCreator={props.putUserProfileThunkCreator} />
-            <MyPostsContainer/>
+                <Profileinfo profile={props.profile} status={props.status}
+                             updateStatusThunkCreator={props.updateStatusThunkCreator} putUserProfileThunkCreator={props.putUserProfileThunkCreator} />
+                <MyPostsContainer/>
             </div>
         </div>
     );

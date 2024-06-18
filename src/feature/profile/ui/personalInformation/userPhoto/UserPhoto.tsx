@@ -10,13 +10,13 @@ import s from './userPhoto.module.scss'
 
 type AvatarEditType = {
   avatar?: null | string
-  deleteAvatar: () => void
   modeOn: boolean
   name?: string
+  deleteAvatar: () => void
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  isOwner: boolean
 }
-export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name, onChange,isOwner }: AvatarEditType) => {
+
+export const UserPhoto = ({ avatar, deleteAvatar, modeOn, name, onChange }: AvatarEditType) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     onChange( event)

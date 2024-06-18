@@ -5,6 +5,7 @@ import {follow, unfollow, UserType} from "../../redux/users-reducer";
 import {NavLink, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
+import { v1 } from "uuid";
 
 type UsersPropsType = {
     pageArray: number[]
@@ -27,7 +28,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
     return <div className={s.items}>
         <div>
             {props.pageArray.map(page => {
-                return <span onClick={(e) => props.onPageChange(page)}
+                return <span key={v1()} onClick={(e) => props.onPageChange(page)}
                              className={page === props.currentPage ? s.currentPage : ""}
                 >{page}</span>
             })}

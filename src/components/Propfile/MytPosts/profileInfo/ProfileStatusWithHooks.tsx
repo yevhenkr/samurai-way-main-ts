@@ -4,6 +4,7 @@ import s from "./Profileinfo.module.scss"
 type ProfileStatusType = {
     status: string
     updateStatus: (status: string) => void
+    isOwner:boolean
 }
 
 const ProfileStatusWithHooks = (props: ProfileStatusType) => {
@@ -15,7 +16,7 @@ const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     }, [props.status])
 
     const setActivateEditMode = () => {
-        setEditMode(true)
+        setEditMode(props.isOwner)
     }
     const setDeactivateEditMode = () => {
         setEditMode(false)

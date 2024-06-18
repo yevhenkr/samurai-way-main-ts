@@ -32,9 +32,10 @@ type PathParamsType = { id: string }
 type PropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<PropsType> {
-
+    isOwner: boolean = false;
     componentDidMount() {
         let userId = Number(this.props.match.params.id) || this.props.authorizedUserId;
+        this.isOwner =Number(this.props.match.params.id) ? Number(this.props.match.params.id)=== this.props.authorizedUserId? true : false :true
         if (!userId) {
             return this.props.history.push("/login");
         }
@@ -44,7 +45,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
     render() {
         return <>
-            <Profile avatar={this.props.profile.photos.large} profile={this.props.profile} status={this.props.status}
+            <Profile isOwner={this.isOwner} avatar={this.props.profile.photos.large} profile={this.props.profile} status={this.props.status}
                      updateStatusThunkCreator={this.props.updateStatusThunkCreator} putUserProfileThunkCreator={this.props.putUserProfileThunkCreator} updatePhotoThunkCreator={this.props.updatePhotoThunkCreator}/>
         </>
     }

@@ -36,6 +36,13 @@
 .bold{
     font-weight: bold;
 }
+.workWrapper{
+    flex-direction: column;
+    padding-left: 10px;
+}
+.displayFlex{
+    display: flex;
+}
 
 .lighter{
     font-weight: lighter;

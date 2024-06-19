@@ -64,23 +64,23 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 }
 export type ProfileObject = {
-    aboutMe: string;
-    contacts: ProfileObjectContacts;
+    userId: number;
     lookingForAJob: boolean;
     lookingForAJobDescription: string;
     fullName: string;
-    userId: number;
+    aboutMe: string;
+    contacts: ProfileObjectContacts;
     photos: ProfileObjectPhotos;
 }
 export type ProfileObjectContacts = {
-    facebook: string;
-    website?: any;
-    vk: string;
-    twitter: string;
-    instagram: string;
-    youtube?: any;
     github: string;
-    Github: string; //use for response PutProfile
+    Github?: string; //use for response PutProfile
+    vk: string;
+    facebook: string;
+    instagram: string;
+    twitter: string;
+    website?: any;
+    youtube?: any;
     mainLink?: any;
 }
 export type ProfileObjectPhotos = {

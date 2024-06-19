@@ -40,10 +40,10 @@ export const profileAPI = {
         return instance.put(`/profile/status`, {status: status});
     },
     putProfile(data: ProfileObject) {
-        if (data.contacts && data.contacts.Github) {
-            data.contacts.github = data.contacts.Github;
-            data.contacts.Github = "data rewrite to github";
-        }
+        // if (data.contacts && data.contacts.Github) {
+        //     data.contacts.github = data.contacts.Github;
+        //     data.contacts.Github = "data rewrite to github";
+        // }
         return instance.put(`/profile`, data);
     },
     putPhoto(data:File) {

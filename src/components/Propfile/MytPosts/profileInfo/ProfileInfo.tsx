@@ -31,7 +31,7 @@ function ProfileInfo(props: ProfilePropsType) {
                              {"Looking for a job: " + `${props.profile.lookingForAJob ? "yes" : "no"}`}
                          </span>
                          <span className={s.lighter}>
-                             {"Job description: " +`${props.profile.lookingForAJobDescription}`}
+                             {"Job skills: " +`${props.profile.lookingForAJobDescription}`}
                          </span>
                      </div>
                  </div>

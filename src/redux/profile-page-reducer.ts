@@ -15,9 +15,9 @@ export type ProfilePageType = {
 
 const initialState: ProfilePageType = {
     posts: [
-        {message: 'bla bla', id: v1()},
-        {message: 'Ivan', id: v1()},
-        {message: 'Sergei', id: v1()},
+        {message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat', id: v1()},
+        {message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.', id: v1()},
+        {message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', id: v1()},
     ] as PotsType[],
     profile: {
         aboutMe: '',

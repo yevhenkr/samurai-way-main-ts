@@ -8,14 +8,23 @@ import {Dispatch} from "redux";
 export type MyPostPropsType = {
     addPost: (newPost: string) => void
     posts: PotsType[]
+    img:string
+    name:string
+    fullName:string
 }
 
 type MyPostMapStateToPropsType = {
     posts: PotsType[]
+    img:string
+    name:string
+    fullName:string
 }
 const mapStateToPropsType = (state: AppStateType): MyPostMapStateToPropsType => {
     return {
-        posts: state.profilePage.posts
+        posts: state.profilePage.posts,
+        img: state.profilePage.profile.photos.small,
+        fullName: state.profilePage.profile.fullName,
+        name: state.profilePage.profile.aboutMe,
     }
 }
 

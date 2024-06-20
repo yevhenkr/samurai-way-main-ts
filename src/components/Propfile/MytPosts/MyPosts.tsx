@@ -12,11 +12,14 @@ type FormDataType = {
 }
 const maxLength10 = maxLengthCreator(10)
 let AddPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    return <form onSubmit={props.handleSubmit} className={s.inputWrap}>
-        <Field component={Input} name="newPostText" placeholder="Enter your Post"
+    return <form onSubmit={(e) => {
+        props.handleSubmit(e);
+        props.reset(); // Сбрасываем значения формы после отправки
+    }} className={s.inputWrap}>
+            <Field component={Input} name="newPostText" placeholder="Enter your Post"
                validate={[requiredField, maxLength10]} className={s.input}/>
-        <Button className={s.button}>Add Post</Button>
-    </form>
+            <Button className={s.button}>Add Post</Button>
+           </form>
 }
 const AddPostReduxForm = reduxForm<FormDataType>({
     form: "addPostForm"

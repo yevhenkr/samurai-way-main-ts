@@ -22,6 +22,6 @@ export const Textarea = ({ input, meta, className, ...rest }: WrappedFieldProps 
     );
 };
 
-export const Input = (props: WrappedFieldProps & { className?: string }) => {
-    return <FormControl {...props} children={<input className={`${s.backgroundWhite} ${props.className}`}{...props.input} />}/>;
+export const Input = (props: WrappedFieldProps & { className?: string , placeholder: string}) => {
+    return <FormControl {...props} children={<input className={`${s.backgroundWhite} ${props.className}`}{...props.input} placeholder={props.placeholder} />}/>;
 }
